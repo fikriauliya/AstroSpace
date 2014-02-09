@@ -18,3 +18,4 @@ Route::controller('users', 'UsersController');
 
 // Profiles
 Route::resource('profiles', 'ProfilesController', array('only' => array('show', 'edit', 'update')));
+Route::get('spaces/{id}', 'SpacesController@show');

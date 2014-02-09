@@ -1,10 +1,11 @@
 <?php
 
 class ProfilesController extends BaseController {
-	public function show($id) {
-		$user = User::find($id);
-		return View::make('profiles.show')->with('user', $user);
-	}
+	// Deprecated
+	// public function show($id) {
+	// 	$user = User::find($id);
+	// 	return View::make('profiles.show')->with('user', $user);
+	// }
 
 	public function edit($id) {
 		$user = User::find($id);
