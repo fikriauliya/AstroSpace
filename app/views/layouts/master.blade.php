@@ -31,16 +31,27 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Register</a></li>
-            <li><a href="#">Login</a></li>
             <li><a href="#">Memberlist</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            @if (Auth::check())
+              <li>{{ HTML::link('users/logout', 'Log out') }}</li>
+            @else
+              <li>{{ HTML::link('users/register', 'Register') }} </li>
+              <li>{{ HTML::link('users/login', 'Log in') }} </li>
+            @endif
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
 
     <div class="container">
+      @if(Session::has('message'))
+        <div class="row" style="margin-top:10px;">
+          <p class="alert alert-info">{{ Session::get('message') }}</p>
+        </div>
+      @endif
       @yield('content')
     </div><!-- /.container -->
 
