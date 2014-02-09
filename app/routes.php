@@ -15,3 +15,6 @@ Route::get('/', 'HomeController@showWelcome');
 
 // Auth
 Route::controller('users', 'UsersController');
+
+// Profiles
+Route::controller('profiles', 'ProfilesController');

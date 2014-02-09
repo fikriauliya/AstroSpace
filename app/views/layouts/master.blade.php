@@ -46,9 +46,9 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="margin-top:10px">
       @if(Session::has('message'))
-        <div class="row" style="margin-top:10px;">
+        <div class="row">
           <p class="alert alert-info">{{ Session::get('message') }}</p>
         </div>
       @endif
