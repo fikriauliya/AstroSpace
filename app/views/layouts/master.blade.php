@@ -7,7 +7,11 @@
     <title>Astro Space</title>
 
     <!-- Bootstrap -->
-    {{ HTML::style('css/bootstrap.min.css') }}
+    @if (Auth::check())
+      {{ HTML::style('css/bootstrap'.Auth::user()->theme.'.min.css') }}
+    @else
+      {{ HTML::style('css/bootstrap.min.css') }}
+    @endif
     {{ HTML::style('css/starter-template.css') }}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,6 +47,12 @@
 
           <ul class="nav navbar-nav navbar-right">
             @if (Auth::check())
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>{{ HTML::link('themes/'.(Auth::user()->id).'/edit', "Edit themes") }}</li>
+                </ul>
+              </li>
               <li>{{ HTML::link('users/logout', 'Log out') }}</li>
             @else
               <li>{{ HTML::link('users/register', 'Register') }} </li>
