@@ -34,7 +34,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">AstroSpaces</a>
+          {{ HTML::link('/', 'AstroSpaces', array('class' => 'navbar-brand')) }}
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
