@@ -48,7 +48,9 @@
 								</tr>
 							</tbody>
 						</table> 
-			  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit', array('class' => 'btn btn-warning')) }}
+						@if (Auth::check() && Auth::user()->id == $user->id)
+				  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit', array('class' => 'btn btn-warning')) }}
+				  	@endif
 					</div>
 			  </div>
 			</div>
