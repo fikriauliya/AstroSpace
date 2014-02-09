@@ -17,6 +17,10 @@ class UsersController extends BaseController {
 	    $user = new User;
 	    $user->username = Input::get('username');
 	    $user->email = Input::get('email');
+	    $user->aim = Input::get('aim');
+	    $user->msn = Input::get('msn');
+	    $user->irc = Input::get('irc');
+	    $user->icq = Input::get('icq');
 	    $user->password = Hash::make(Input::get('password'));
 	    $user->save();
 
