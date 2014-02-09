@@ -31,7 +31,7 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Memberlist</a></li>
+            <li>{{ HTML::link('users', 'Memberlist') }}</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
