@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('content')
 	<div class="row">
-		<h3>Profile</h3> 
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
 			  <li class="active" ><a href="#profile" data-toggle="tab">Profile</a></li>
@@ -41,6 +40,7 @@
 								</tr>
 							</tbody>
 						</table> 
+			  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit', array('class' => 'btn btn-warning')) }}
 					</div>
 			  </div>
 			  <div class="tab-pane" id="messages">...</div>

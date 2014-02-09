@@ -17,4 +17,4 @@ Route::get('/', 'HomeController@showWelcome');
 Route::controller('users', 'UsersController');
 
 // Profiles
-Route::controller('profiles', 'ProfilesController');
+Route::resource('profiles', 'ProfilesController', array('only' => array('show', 'edit', 'update')));
