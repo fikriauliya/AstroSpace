@@ -14,8 +14,21 @@
 			<!-- Tab panes -->
 			<div id="myTabContent" class="tab-content">
 			  <div class="tab-pane active" id="blog">
-			  	<div class="col-sm-5" style="margin:20px">
-			  		<p>Blog content here</p>
+			  	<div style="margin:20px">
+			  		@if(Auth::check() && Auth::user()->id == $user->id)
+				  		<div class="row">
+				  			{{ HTML::link("blogposts/create", "Create new post", array('class'=>'btn btn-primary')) }}
+				  		</div>
+				  	@endif
+
+			  		@foreach($blog_posts as $key => $value)
+			  			<div class="row">
+			  				<h3>{{ $value->title }}</h3>
+			  				<p>{{ $value->content }}</p>
+			  				<small>{{ $value->mood }}</small>
+				  			<hr/>
+			  			</div>
+			  		@endforeach
 			  	</div>
 			  </div>
 			  <div class="tab-pane" id="profile">

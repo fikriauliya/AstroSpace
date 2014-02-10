@@ -24,6 +24,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
+	public function blogPosts() {
+		return $this->hasMany('BlogPost', 'posted_by_id', 'id');
+	}
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -53,5 +56,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
-
 }

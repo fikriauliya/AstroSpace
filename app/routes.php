@@ -21,3 +21,4 @@ Route::resource('profiles', 'ProfilesController', array('only' => array('show', 
 Route::get('spaces/{id}', 'SpacesController@show');
 
 Route::resource('themes', 'ThemesController', array('only' => array('edit', 'update')));
+Route::resource('blogposts', 'BlogPostsController', array('only' => array('create', 'store')));
