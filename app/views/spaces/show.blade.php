@@ -10,6 +10,47 @@
 			  <li class="active" ><a href="#blog" data-toggle="tab">Blog</a></li>
 			  <li><a href="#profile" data-toggle="tab">Profile</a></li>
 			</ul>
+			<!-- just for testing add friends-->
+			<div style="margin: 20px">	
+				@if (Auth::check() && $show_add_friend==1)
+				{{ Form::open(array('url'=>'addFriend/')) }}
+				{{ Form::hidden('friend_id', $user->id) }}
+				{{ Form::submit('Add as friend') }}
+				{{ Form::close() }}
+				@endif
+			</div>
+
+			<!-- just for testing accept friends-->
+			<div style="margin: 20px">
+				<h3> Friend request </h3>
+				@if (Auth::check() && Auth::user()->id == $user->id)
+					@foreach($friend_requests as $key => $value) 
+						{{ Form::open(array('url' => 'acceptFriend/')) }}
+						{{ Form::hidden('friend_id', $value->request) }}
+						{{ Form::submit('Accept '.User::find($value->request)->username.' as friend?') }}
+						{{ Form::close() }}
+					@endforeach
+				@endif
+			</div>
+
+			<!-- just for testing show and delete friend -->
+
+        	<div style="margin: 20px">
+				<h3> Friend List </h3>
+            @if(Auth::check() &&  Auth::user()->id == $user->id)
+               @foreach($friends as $key => $value)
+                  <div class="row">
+                     <a href=" {{ URL::to('spaces/'.$value->friend_id)}}"> {{     User::find($value->friend_id)->username }} </a>
+                  	{{ Form::open(array('url' => 'removeFriend/')) }}
+							{{ Form::hidden('friend_id', $value->friend_id) }}
+							{{ Form::submit('Remove '.User::find($value->friend_id)->username.' as friend?') }}
+							{{ Form::close() }}
+						</div>
+               @endforeach
+            @endif
+        </div>
+
+
 
 			<!-- Tab panes -->
 			<div id="myTabContent" class="tab-content">
@@ -65,7 +106,9 @@
 				  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit', array('class' => 'btn btn-warning')) }}
 				  	@endif
 					</div>
-			  </div>
+			  </div> <!-- for tab-pane profile -->
+		
+
 			</div>
 		</div>
 	</div>

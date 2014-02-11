@@ -12,6 +12,10 @@
 */
 
 Route::get('/', 'HomeController@showWelcome');
+Route::post('addFriend/', 'FriendsController@addFriend');
+Route::post('acceptFriend/', 'FriendsController@acceptFriend');
+Route::post('removeFriend/', 'FriendsController@removeFriend');
+
 
 // Auth
 Route::controller('users', 'UsersController');
@@ -22,3 +26,4 @@ Route::get('spaces/{id}', 'SpacesController@show');
 
 Route::resource('themes', 'ThemesController', array('only' => array('edit', 'update')));
 Route::resource('blogposts', 'BlogPostsController', array('only' => array('create', 'store')));
+
