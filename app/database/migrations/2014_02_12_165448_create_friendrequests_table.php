@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFriendsTable extends Migration {
+class CreateFriendrequestsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,14 @@ class CreateFriendsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('friends', function(Blueprint $table)
+		Schema::table('friendrequests', function(Blueprint $table)
 		{
-			//Create friends table containing the friend_id, friend_of_id
+			//
 			$table->create();
+
 			$table->increments('id');
 			$table->integer('friend_id');
-			$table->integer('friend_of_id');
+			$table->integer('owner_id');
 
 			$table->timestamps();
 		});
@@ -31,10 +32,10 @@ class CreateFriendsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('friends', function(Blueprint $table)
+		Schema::table('friendrequests', function(Blueprint $table)
 		{
-			//Drop the table friends if exist
-			Schema::dropIfExists('friends');
+			//
+			Schema::dropIfExists('friendrequests');
 		});
 	}
 
