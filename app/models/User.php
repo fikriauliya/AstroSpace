@@ -29,11 +29,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function friends() {
-		return $this->hasMany('Friend', 'friend_of_id', 'id');
+		return $this->hasMany('Friend', 'owner_id', 'id');
 	}
 
 	public function friendRequests() {
-		return $this->hasMany('FriendRequest', 'owner', 'id');
+		return $this->hasMany('FriendRequest', 'owner_id', 'id');
 	}
 	/**
 	 * Get the unique identifier for the user.

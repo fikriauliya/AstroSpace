@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@showWelcome');
+
+//Friend
 Route::post('addFriend/', 'FriendsController@addFriend');
 Route::post('acceptFriend/', 'FriendsController@acceptFriend');
 Route::post('removeFriend/', 'FriendsController@removeFriend');

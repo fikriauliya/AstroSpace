@@ -7,14 +7,11 @@ class FriendsController extends BaseController {
 
 	public function showFriend() {
 		// get all friends
-		$user_id = Auth::user()->id;
-		$friends = User::find($id)->friends;
+		$user = Auth::user();
 
 		//show the view and pass the friends to it
 		return View::make('friends.showFriend')
-			->with('friends',$friends)
-			->with('user',$user);
-
+				->with('user',$user);
 	}
 
 	public function addFriend() {
@@ -33,8 +30,8 @@ class FriendsController extends BaseController {
 			//Get the input
 			$friend_id = Input::get('friend_id');
 			$friend_request = new FriendRequest;
-			$friend_request->request = $user_id;
-			$friend_request->owner = $friend_id;
+			$friend_request->friend_id = $user_id;
+			$friend_request->owner_id = $friend_id;
 			$friend_request->save();
 
 			//redirect
@@ -60,19 +57,19 @@ class FriendsController extends BaseController {
 			$friend_id = Input::get('friend_id');
 			
 			//get and delete the friend_request
-			$friend_request = User::find($user_id)->friendRequests()->where('request', '=', $friend_id)->firstOrFail();
+			$friend_request = User::find($user_id)->friendRequests()->where('friend_id', '=', $friend_id)->firstOrFail();
 			$friend_request->delete();
 			
 			
 			//store the new friend
 			$friend1 = new Friend;
 			$friend1->friend_id = $friend_id;
-			$friend1->friend_of_id = $user_id;
+			$friend1->owner_id = $user_id;
 			$friend1->save();
 			
 			$friend2 = new Friend;
 			$friend2->friend_id = $user_id;
-			$friend2->friend_of_id = $friend_id;
+			$friend2->owner_id = $friend_id;
 			$friend2->save();
 		}
 
