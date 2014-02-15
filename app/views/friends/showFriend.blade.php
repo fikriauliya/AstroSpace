@@ -12,7 +12,7 @@
 						<td>
 							{{ Form::open(array('url' => 'removeFriend/')) }}
 							{{ Form::hidden('friend_id', $value->friend_id) }}
-							{{ Form::submit('Remove ?') }}
+							{{ Form::submit('Remove ?', array('class' => 'btn btn-danger')) }}
 							{{ Form::close() }}
 						</td>
 					</tr>
@@ -34,7 +34,7 @@
 							<td>
 							{{ Form::open(array('url' => 'acceptFriend/')) }}
 							{{ Form::hidden('friend_id', $value->friend_id) }}
-							{{ Form::submit('Accept ?') }}
+							{{ Form::submit('Accept ?', array('class' => 'btn btn-info')) }}
 							{{ Form::close() }}
 							</td>
 						</tr>
