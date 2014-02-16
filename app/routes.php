@@ -18,6 +18,9 @@ Route::post('addFriend/', 'FriendsController@addFriend');
 Route::post('acceptFriend/', 'FriendsController@acceptFriend');
 Route::post('removeFriend/', 'FriendsController@removeFriend');
 
+//WebRTC testing
+Route::get('webrtc/', 'WebRTCController@videoCall');
+
 
 // Auth
 Route::controller('users', 'UsersController');
