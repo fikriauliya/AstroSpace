@@ -5093,6 +5093,7 @@ PeerConnection.prototype.offer = function (constraints, cb) {
                 OfferToReceiveVideo: true
             }
         };
+	 var mediaConstraints2 = {"optional":[], "mandatory":{}};
     var callback = hasConstraints ? cb : constraints;
 	console.log("TEST9: GIVE OFFER CONSTRAINTS: ", constraints);
     // Actually generate the offer
@@ -5153,7 +5154,7 @@ PeerConnection.prototype.answer = function (offer, constraints, cb) {
 // Process an answer
 PeerConnection.prototype.handleAnswer = function (answer) {
 	console.log("TEST7: SET REMOTE DESCRIPTION", answer);
-    this.pc.setRemoteDescription(new webrtc.SessionDescription(answer));
+    this.pc.setRemoteDescription( new RTCSessionDescription(answer));
 };
 
 // Close the peer connection
@@ -5167,7 +5168,7 @@ PeerConnection.prototype._answer = function (offer, constraints, cb) {
     console.log("TEST5: _ANSWER");
 	 var self = this;
 	 var constraints2 = {"mandatory": { "OfferToReceiveAudio": true, "OfferToReceiveVideo": true}};
-    this.pc.setRemoteDescription(new webrtc.SessionDescription(offer));
+    this.pc.setRemoteDescription(new RTCSessionDescription(offer));
     this.pc.createAnswer(
         function (answer) {
             answer.sdp = self._applySdpHack(answer.sdp);
@@ -5179,7 +5180,7 @@ PeerConnection.prototype._answer = function (offer, constraints, cb) {
             self.emit('error', err);
             if (cb) cb(err);
         },
-        constraints2
+        constraints
     );
 };
 
@@ -5200,6 +5201,7 @@ PeerConnection.prototype._onDataChannel = function (event) {
 
 // Internal handling of adding stream
 PeerConnection.prototype._onAddStream = function (event) {
+	console.log("TEST9: ON ADD STREAM");
     this.remoteStream = event.stream;
     this.emit('addStream', event);
 };
