@@ -11,6 +11,7 @@
 			  <li><a href="#profile" data-toggle="tab">Profile</a></li>
 			  @if (Auth::check() && Auth::user()->id == $user->id)
 			  <li><a href="#showFriend" data-toggle="tab">ShowFriend</a></li>
+			  <li><a href="#showVideoCallInfo" data-toggle="tab">Video Call Info </a></li>
 			  @endif
 			</ul>
 			<!-- just for testing add friends-->
@@ -81,7 +82,9 @@
 			  </div> <!-- for tab-pane profile -->
 				@if (Auth::check() && Auth::user()->id == $user->id)
 				<?php echo $showFriend; ?>
+				<?php echo $showVideoCallInfo; ?>
 				@endif		
+
 
 			</div>
 		</div>

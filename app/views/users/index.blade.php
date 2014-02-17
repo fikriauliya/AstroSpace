@@ -12,6 +12,9 @@
 	  			<td>MSN</td>
 	  			<td>IRC</td>
 	  			<td>ICQ</td>
+				@if(Auth::check())
+				<td></td>
+				@endif
 	  		</tr>
 	  	</thead>
 	  	<tbody>
@@ -23,6 +26,28 @@
 						<td>{{$value->msn}}</td>
 						<td>{{$value->irc}}</td>
 						<td>{{$value->icq}}</td>
+						@if(Auth::check())
+						<td>
+						<?php 
+							$auth_user = Auth::user();
+							$user = $value;
+							$is_friend = $user->friends()->where('friend_id', '=',$auth_user->id)->count();
+						 	$is_request_friend = $user->friendRequests()->where('friend_id', '=', $auth_user->id)->count();
+							$is_request_friend += $auth_user->friendRequests()->where('friend_id','=',$user->id)->count();
+							$show_add_friend = 0;
+							if ($auth_user->id != $user->id && $is_friend==0 && $is_request_friend==0) {
+								$show_add_friend = 1;
+							}   
+	 
+						?>
+						@if($show_add_friend)
+							{{ Form::open(array('url'=>'addFriend/')) }}
+							{{ Form::hidden('friend_id', $user->id) }}
+							{{ Form::submit('Add as friend') }}
+							{{ Form::close() }}
+						@endif
+						@endif
+						</td>
 					</tr>
 				@endforeach
 	  	</tbody>

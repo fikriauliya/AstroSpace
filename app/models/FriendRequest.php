@@ -4,6 +4,6 @@ class FriendRequest extends Eloquent {
 	protected $table = 'friendrequests';
 
 	public function user() {
-		return $this->belongTo('User', 'id', 'owner_id');
+		return $this->belongsTo('User', 'id', 'owner_id');
 	}
 }

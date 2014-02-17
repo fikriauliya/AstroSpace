@@ -3,7 +3,7 @@
 class FriendsController extends BaseController {
 	public function __construct() {
 		$this->beforeFilter('csrf', array('on'=>'post'));
-		$this->beforeFilter('auth',array('only'=>array('showFriend')));	
+		$this->beforeFilter('auth',array('only'=>array('addFriend', 'acceptFriend', 'removeFriend')));	
 	}
 
 	public function showFriend() {
@@ -17,6 +17,8 @@ class FriendsController extends BaseController {
 
 	public function addFriend() {
 		$user_id = Auth::user()->id;
+		$user = Auth::user();
+
 
 		$rules = array(
 			'friend_id' => 'required|numeric'
@@ -30,14 +32,34 @@ class FriendsController extends BaseController {
 		else {
 			//Get the input
 			$friend_id = Input::get('friend_id');
+			
+			//Check if id exist
+			if (!User::find($friend_id)->exists()){
+				Session::flash('message', 'Cannot befriend, user is not exist!');
+				Redirect::back();
+			}
+
+			//Check if already friend
+			if ($user->friends()->where('friend_id','=',$friend_id)->exists()){
+				Session::flash('message', 'Already become friend');
+				Redirect::back();
+			}
+
+			//Check if already request friend
+			if (User::find($friend_id)->friendRequests()->where('friend_id','=',$user_id)->exists()){
+				Session::flash('message', 'Already send request');
+				Redirect::back();
+			}
+
+
 			$friend_request = new FriendRequest;
 			$friend_request->friend_id = $user_id;
 			$friend_request->owner_id = $friend_id;
 			$friend_request->save();
 
-			//redirect
+			//refresh
 			Session::flash('message', 'Successfully add friend!');
-			return Redirect::to('spaces/'.$user_id);
+			return Redirect::back();
 		}
 	}
 
@@ -57,11 +79,19 @@ class FriendsController extends BaseController {
 			//get the input friend_id
 			$friend_id = Input::get('friend_id');
 			
+			//Check if friend request really exist
+			if (!User::find($user_id)->friendRequests()->where('friend_id','=',$friend_id)->exists()){
+				Session::flash('message','Friend request not exist');
+				Redirect::back();
+			}
+
+
+
 			//get and delete the friend_request
 			$friend_request = User::find($user_id)->friendRequests()->where('friend_id', '=', $friend_id)->firstOrFail();
 			$friend_request->delete();
 			
-			
+
 			//store the new friend
 			$friend1 = new Friend;
 			$friend1->friend_id = $friend_id;
@@ -81,7 +111,7 @@ class FriendsController extends BaseController {
 
 	public function removeFriend() {
 		$user_id = Auth::user()->id;
-
+		$user = Auth::user();
 
 		$rules = array(
 			'friend_id' => 'required|numeric'
@@ -95,6 +125,12 @@ class FriendsController extends BaseController {
 		else {
 			//get the entry friend_id
 			$friend_id = Input::get('friend_id');
+
+			//Check if really are friend
+			if (!$user->friends()->where('friend_id','=',$friend_id)->exists()){
+				Session::flash('message', 'Cannot remove non friend');
+				Redirect::back();
+			}
 
 			//get the friend row
 			$friend1 = User::find($user_id)->friends()->where('friend_id', '=', $friend_id);

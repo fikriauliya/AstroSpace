@@ -8,11 +8,37 @@
 {{ HTML::style('css/rtcMultiConnection/getMediaElement.css') }}
 
 {{ HTML::script('js/rtcMultiConnection/firebase.js') }}
+{{ HTML::script('js/jquery.js') }}
+<script>
+	$(function(){
+		console.log("READY!");
+		$("a.invite").click( function() {
+			var el = this;
+			var user_id = el.dataset.userid;
+			console.log("CLICK: ", user_id);
+			$.ajax({
+				type: "GET",
+				url: "{{ URL::to('webrtc/inviteToRoom/') }}",
+				data: { 'friend_id': user_id },
+				success: function() {
+					$(el).replaceWith("<p>Is invited<p>");
+				},
+				error: function(e) {
+					console.log("ERROR: ", e);
+				},
+			});
+		});
+	});
+
+</script>
+
+
 </head>
 
 <body>
 <button id="open-session"> Open Session </button>
-<table style="border-left: 1px solid black; width:100%;">
+<div id="videoContainer">
+<table class="table table-bordered" style="border-left: 1px solid black; width:100%;">
 	<tbody>
 		<tr>
 			<td>
@@ -22,15 +48,51 @@
 		</tr>
 	</tbody>
 </table>
+</div>
 
+<div id="exitRoom">
+	{{ Form::open(array('url' => 'webrtc/exitRoom')) }}
+	{{ Form::submit('Exit room?') }}
+	{{ Form::close() }}
+</div>
+
+<div id="inviteFriend">
+<h3>Invite Friend:</h3>
+<table class="table table-striped table-bordered">
+	<tbody>
+		@foreach($user->friends as $key => $value)
+		<?php $friend = User::find($value->friend_id);
+				$room_id = $user->videoRoom->room_id;
+		?>
+		<tr>
+			<td>
+				<a href="{{ URL::to('spaces/'.$friend->id) }}">{{{ $friend->username }}} </a>
+			</td>
+			<td>
+				@if($friend->videoCallRequests()->where('room_id', '=', $room_id)->exists() || ($friend->videoRoom()->exists()&& $friend->videoRoom->room_id == $room_id) )
+				<p>Is invited</p>
+				@else
+				<a href="#" data-userid="{{{$friend->id}}}" class="invite">Invite</a>
+				@endif
+			</td>
+		</tr>
+		@endforeach
+	</tbody>
+</table>
+</div>
 
 <script>
-var connection = new RTCMultiConnection();
+var connection = new RTCMultiConnection("{{$user->videoRoom->room_id}}");
 
 connection.session = {
 	audio: true,
 	video: true
 };
+
+connection.onopen = function(e) {
+	var openButton = document.querySelector("button#open-session");
+	openButton.disabled = true;
+}
 
 var videosContainer = document.getElementById("local-media-stream");
 
@@ -77,8 +139,6 @@ connection.connect();
 
 
 </script>
-
-<!-- <script src="//www.webrtc-experiment.com/common.js"></script> -->
 
 </body>
 

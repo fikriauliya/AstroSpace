@@ -20,7 +20,8 @@ class SpacesController extends BaseController {
 			->with('user', $user)
 			->with('blog_posts', $blog_posts)
 			->with('show_add_friend',$show_add_friend)
-			->nest('showFriend', 'friends.showFriend', array('user'=>$user));
+			->nest('showFriend', 'friends.showFriend', array('user'=>$user))
+			->nest('showVideoCallInfo', 'webRTC.showVideoCallInfo', array('user'=>$user));
 		//return View::make('spaces.show')->with('user', $user)->with('blog_posts', $blog_posts);
 		return $view;
 	}

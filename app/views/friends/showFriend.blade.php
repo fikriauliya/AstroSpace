@@ -1,9 +1,9 @@
+@if(Auth::check() && Auth::user()->id == $user->id)
 	<div class="tab-pane"  id="showFriend">
 		<div style="margin: 20px">
 			<h3> Friends List </h3>
 			<table class="table table-striped table-bordered">
 				<tbody>
-				@if(Auth::check() &&  Auth::user()->id == $user->id)
 					@foreach($user->friends as $key => $value)
 					<tr>
 						<td>
@@ -17,7 +17,6 @@
 						</td>
 					</tr>
 					@endforeach
-				@endif
 				</tbody>
 			</table>
 		
@@ -25,7 +24,6 @@
 			<div style="margin: 20px">
 			<table class="table table-striped table-bordered">
 				<tbody>
-				@if (Auth::check() && Auth::user()->id == $user->id)
 					@foreach($user->friend_requests as $key => $value) 
 						<tr>
 							<td>
@@ -39,13 +37,11 @@
 							</td>
 						</tr>
 					@endforeach
-				@endif
 				</tbody>
 			</table>
 			</div>
-
-	
-
+		
 		</div>
 	</div>
-			
+@endif			
+
