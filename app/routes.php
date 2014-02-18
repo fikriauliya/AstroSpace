@@ -22,7 +22,7 @@ Route::post('removeFriend/', 'FriendsController@removeFriend');
 Route::get('webrtc/', 'WebRTCController@goToRoom');
 Route::post('webrtc/createRoom', 'WebRTCController@createRoom');
 Route::post('webrtc/approveRoom', 'WebRTCController@approveRoom');
-Route::get('webrtc/inviteToRoom', 'WebRTCController@inviteToRoom');
+Route::post('webrtc/inviteToRoom', 'WebRTCController@inviteToRoom');
 Route::post('webrtc/exitRoom', 'WebRTCController@exitRoom');
 
 // Auth

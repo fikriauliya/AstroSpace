@@ -11,15 +11,17 @@
 {{ HTML::script('js/jquery.js') }}
 <script>
 	$(function(){
-		console.log("READY!");
+		console.log("DOM CONTENT LOADED");
 		$("a.invite").click( function() {
 			var el = this;
 			var user_id = el.dataset.userid;
-			console.log("CLICK: ", user_id);
 			$.ajax({
-				type: "GET",
+				type: "POST",
 				url: "{{ URL::to('webrtc/inviteToRoom/') }}",
-				data: { 'friend_id': user_id },
+				data: { 
+					'friend_id': user_id,
+					'_token': '{{ csrf_token() }}',
+				},
 				success: function() {
 					$(el).replaceWith("<p>Is invited<p>");
 				},
