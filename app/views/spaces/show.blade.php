@@ -37,9 +37,9 @@
 
 			  		@foreach($blog_posts as $key => $value)
 			  			<div class="row">
-			  				<h3>{{ $value->title }}</h3>
+			  				<h3>{{ HTML::link("blogposts/".$value->id, $value->title)}}</h3>
 			  				<p>{{ $value->content }}</p>
-			  				<small>{{ $value->mood }}</small>
+			  				<small>Mood: {{ $value->mood }}</small>
 				  			<hr/>
 			  			</div>
 			  		@endforeach

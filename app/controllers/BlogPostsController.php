@@ -1,10 +1,14 @@
 <?php
 
 class BlogPostsController extends BaseController {
-	// Deprecated
 	public function __construct() {
     $this->beforeFilter('csrf', array('on'=>'post'));
     $this->beforeFilter('auth', array('only'=>array('create', 'store')));
+	}
+
+	public function show($id) {
+		$blogpost = BlogPost::find($id);
+		return View::make('blogposts.show')->with('blogpost', $blogpost);
 	}
 
 	public function create() {
