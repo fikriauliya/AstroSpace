@@ -10,17 +10,15 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-9">
-      <h3>Comments</h3>
+    <div class="col-sm-8" style="background-color: rgb(247, 247, 249); padding:20px">
       @foreach($comments as $comment)
         <div>
-          <p>{{$comment->content}}</p>
+          <p style="font-size:small">{{$comment->content}}</p>
           <small>By {{$comment->postedBy->username}}</small>
-          <hr/>
         </div>
       @endforeach
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 col-sm-offset-1">
       {{ Form::open(array('url'=>'comments', 'class'=>'form-horizontal', 'role'=>'form')) }}
         <h3>Leave comment</h3>
 
