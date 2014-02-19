@@ -10,18 +10,17 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-8" style="background-color: rgb(247, 247, 249); padding:20px">
+    <div class="col-sm-8">
       @foreach($comments as $comment)
-        <div>
+        <div style="background-color: rgb(247, 247, 249); padding:20px; margin-bottom: 10px">
           <p style="font-size:small">{{$comment->content}}</p>
-          <small>By {{$comment->postedBy->username}}</small>
+          <small>By 
+            {{ HTML::link('spaces/'.$comment->postedBy->id, $comment->postedBy->username) }}</small>
         </div>
       @endforeach
     </div>
-    <div class="col-sm-3 col-sm-offset-1">
+    <div class="col-sm-4">
       {{ Form::open(array('url'=>'comments', 'class'=>'form-horizontal', 'role'=>'form')) }}
-        <h3>Leave comment</h3>
-
         <ul>
           @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
@@ -34,7 +33,7 @@
         </div>
         
         <div class="form-group">
-          {{ Form::submit('Post', array('class'=>'btn btn-primary'))}}          
+          {{ Form::submit('Add comment', array('class'=>'btn btn-primary'))}}          
         </div>
       {{ Form::close() }}
     </div>

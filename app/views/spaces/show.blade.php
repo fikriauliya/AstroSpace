@@ -39,7 +39,8 @@
 			  			<div class="row">
 			  				<h3>{{ HTML::link("blogposts/".$value->id, $value->title)}}</h3>
 			  				<p>{{ $value->content }}</p>
-			  				<small>Mood: {{ $value->mood }}</small>
+			  				<p style="font-size:small">Mood: {{ $value->mood }}</p>
+			  				<small>{{ HTML::link("blogposts/".$value->id, count($value->comments)." comment(s)") }}</small>
 				  			<hr/>
 			  			</div>
 			  		@endforeach
