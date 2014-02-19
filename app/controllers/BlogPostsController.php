@@ -8,7 +8,8 @@ class BlogPostsController extends BaseController {
 
 	public function show($id) {
 		$blogpost = BlogPost::find($id);
-		return View::make('blogposts.show')->with('blogpost', $blogpost);
+		$comments = $blogpost->comments;
+		return View::make('blogposts.show')->with('blogpost', $blogpost)->with('comments', $comments);
 	}
 
 	public function create() {

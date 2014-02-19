@@ -34,4 +34,5 @@ Route::get('spaces/{id}', 'SpacesController@show');
 
 Route::resource('themes', 'ThemesController', array('only' => array('edit', 'update')));
 Route::resource('blogposts', 'BlogPostsController', array('only' => array('show', 'create', 'store')));
+Route::resource('comments', 'CommentsController', array('only' => array('store')));
 
