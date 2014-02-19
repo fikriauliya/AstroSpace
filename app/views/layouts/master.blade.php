@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php Session::put('current_url', URL::full()); ?>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -42,6 +43,9 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
+			 	@if(Auth::check())
+				<li>{{ HTML::link('spaces/'.Auth::user()->id, 'Home') }}</li>
+				@endif
             <li>{{ HTML::link('users', 'Memberlist') }}</a></li>
           </ul>
 

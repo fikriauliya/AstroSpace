@@ -18,7 +18,8 @@ class FriendsController extends BaseController {
 	public function addFriend() {
 		$user_id = Auth::user()->id;
 		$user = Auth::user();
-
+		$current_url = Session::get('current_url');
+		Session::forget('current_url');
 
 		$rules = array(
 			'friend_id' => 'required|numeric'
@@ -36,19 +37,19 @@ class FriendsController extends BaseController {
 			//Check if id exist
 			if (!User::find($friend_id)->exists()){
 				Session::flash('message', 'Cannot befriend, user is not exist!');
-				Redirect::back();
+				Redirect::to($current_url);
 			}
 
 			//Check if already friend
 			if ($user->friends()->where('friend_id','=',$friend_id)->exists()){
 				Session::flash('message', 'Already become friend');
-				Redirect::back();
+				Redirect::to($current_url);
 			}
 
 			//Check if already request friend
 			if (User::find($friend_id)->friendRequests()->where('friend_id','=',$user_id)->exists()){
 				Session::flash('message', 'Already send request');
-				Redirect::back();
+				Redirect::to($current_url);
 			}
 
 
@@ -59,12 +60,14 @@ class FriendsController extends BaseController {
 
 			//refresh
 			Session::flash('message', 'Successfully add friend!');
-			return Redirect::back();
+			return Redirect::to($current_url);
 		}
 	}
 
 	public function acceptFriend() {
 		$user_id = Auth::user()->id;
+		$current_url = Session::get('current_url');
+		Session::forget('current_url');
 
 		$rules = array(
 			'friend_id' => 'required|numeric'
@@ -73,7 +76,7 @@ class FriendsController extends BaseController {
 
 		//redirect to home if error
 		if ($validator->fails()) {
-			return Redirect::to('spaces/'.$user_id)->with('message', 'Error add friend');
+			return Redirect::to($current_url)->with('message', 'Error add friend');
 		} 
 		else {
 			//get the input friend_id
@@ -82,7 +85,7 @@ class FriendsController extends BaseController {
 			//Check if friend request really exist
 			if (!User::find($user_id)->friendRequests()->where('friend_id','=',$friend_id)->exists()){
 				Session::flash('message','Friend request not exist');
-				Redirect::back();
+				Redirect::to($current_url);
 			}
 
 
@@ -106,12 +109,14 @@ class FriendsController extends BaseController {
 
 		//redirect
 		Session::flash('message', 'Successfully accept friend!');
-		return Redirect::to('spaces/'.$user_id);
+		return Redirect::to($current_url);
 	}
 
 	public function removeFriend() {
 		$user_id = Auth::user()->id;
 		$user = Auth::user();
+		$current_url = Session::get('current_url');
+		Session::forget('current_url');
 
 		$rules = array(
 			'friend_id' => 'required|numeric'
@@ -120,7 +125,7 @@ class FriendsController extends BaseController {
 
 		//redirect to home if error
 		if ($validator->fails()) {
-			return Redirect::to('spaces/'.$user_id)->with('message', 'Error add friend');
+			return Redirect::to($current_url)->with('message', 'Error add friend');
 		} 
 		else {
 			//get the entry friend_id
@@ -129,7 +134,7 @@ class FriendsController extends BaseController {
 			//Check if really are friend
 			if (!$user->friends()->where('friend_id','=',$friend_id)->exists()){
 				Session::flash('message', 'Cannot remove non friend');
-				Redirect::back();
+				Redirect::to($current_url);
 			}
 
 			//get the friend row
@@ -143,7 +148,7 @@ class FriendsController extends BaseController {
 		}
 		//redirect
 		Session::flash('message', 'Successfully remove friend!');
-		return Redirect::to('spaces/'.$user_id);
+		return Redirect::to($current_url);
 	}
 
 }

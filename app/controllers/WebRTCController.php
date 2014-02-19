@@ -10,13 +10,13 @@ class WebRTCController extends BaseController {
 		//get user
 		$user = Auth::user();
 		//get the room id
-		$room_id = Input::get('r');
+		$room_id = $user->videoRoom->room_id;
 		//make sure the room_id is only alpha numeric
 		$room_id = preg_replace("/[^A-Za-z0-9_]/","",$room_id);
 		//Check whether the user is authorized to go to the room
-		if (!($user->videoRoom()->exists()) ||  !($user->videoRoom->room_id == $room_id)){
+		if (!($user->videoRoom()->exists()) ){
 			//redirect
-			Session::flash('message', 'You are not authorized to the video room');
+			Session::flash('message', 'You do not have any active video chat room');
 			return Redirect::to('spaces/'.$user->id);
 		}
 
@@ -46,7 +46,7 @@ class WebRTCController extends BaseController {
 		$video_room->save();
 
 		Session::flash('message', 'Successfully create a video chat room');
-		return Redirect::to('webrtc/?r='.$room_id);
+		return Redirect::to('webrtc/');
 	}
 
 	public function inviteToRoom(){
@@ -117,7 +117,7 @@ class WebRTCController extends BaseController {
 
 		//refresh browser and give message
 		Session::flash('message', 'Successfully approve room');
-		return Redirect::to('webrtc/?r='.$room_id);
+		return Redirect::to('webrtc/');
 	}
 
 	public function exitRoom(){
@@ -139,6 +139,9 @@ class WebRTCController extends BaseController {
 		if (!VideoRoom::where('room_id', '=', $room_id)->exists()){
 			VideoCallRequest::where('room_id', '=', $room_id)->delete();
 		}
+
+		//Additionally, we must remove all request to the room from this user
+		VideoCallRequest::where('host_id', '=', $user->id)->delete();
 
 		//redirect
 		Session::flash('message', 'Successfully exit from room');

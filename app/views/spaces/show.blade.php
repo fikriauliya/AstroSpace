@@ -19,7 +19,7 @@
 				@if (Auth::check() && $show_add_friend==1)
 				{{ Form::open(array('url'=>'addFriend/')) }}
 				{{ Form::hidden('friend_id', $user->id) }}
-				{{ Form::submit('Add as friend') }}
+				{{ Form::submit('Add as friend', array('class' => 'btn btn-primary')) }}
 				{{ Form::close() }}
 				@endif
 			</div>

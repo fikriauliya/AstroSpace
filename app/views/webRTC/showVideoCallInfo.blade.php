@@ -3,17 +3,14 @@
 	<div style="margin:20px">
 	<div id="activeRoom">
 		@if($user->videoRoom()->exists())
-		<h3> You have active video chat room with room_id: {{{ $user->videoRoom->room_id }}}</h3>
+		<h3> You have active video chat room.</h3>
 		<?php
 			$room_id = $user->videoRoom->room_id; 
 			$participants = VideoRoom::where('room_id', '=', $room_id);
 		?>
 		{{ Form::open(array('url' => 'webrtc/', 'method'=>'GET')) }}
-		{{ Form::hidden('r', $room_id) }}
-		{{ Form::submit('Go to video chat room') }}
+		{{ Form::submit('Go to video chat room', array('class' => 'btn btn-success')) }}
 		{{ Form::close() }}
-
-		<a href="{{ URL::to('webrtc/') }}?r={{{$room_id}}}">Go to active room</a>
 
 		<h4> Participants: </h4>
 		<table>
@@ -28,7 +25,7 @@
 		
 			
 		@else
-			<h3> You don't have active video chat room. </h3>
+			<h3> You do not have active video chat room. </h3>
 			{{ Form::open(array('url' => 'webrtc/createRoom')) }}
 			{{ Form::submit('Create new room', array('class' => 'btn btn-info')) }}
 			{{ Form::close() }}
@@ -38,7 +35,6 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<td>Room_ID</td>
 				<td>Host</td>
 				@if(!$user->videoRoom()->exists())
 				<td>Approve</td>
@@ -48,7 +44,6 @@
 		<tbody>
 		@foreach($user->videoCallRequests as $key => $value)
 			<tr>
-				<td>{{{ $value->room_id }}}</td>
 				<td>{{{ User::find($value->host_id)->username }}}</td>
 				@if (!$user->videoRoom()->exists())
 				<td>

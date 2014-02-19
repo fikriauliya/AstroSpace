@@ -10,10 +10,9 @@
 							<a href=" {{ URL::to('spaces/'.$value->friend_id)}}"> {{ User::find($value->friend_id)->username }} </a>
 						</td>
 						<td>
-							{{ Form::open(array('url' => 'removeFriend/')) }}
-							{{ Form::hidden('friend_id', $value->friend_id) }}
-							{{ Form::submit('Remove ?', array('class' => 'btn btn-danger')) }}
-							{{ Form::close() }}
+
+							<a href=# class="remove btn btn-danger" data-userid="{{$value->friend_id}}">Remove</a>
+
 						</td>
 					</tr>
 					@endforeach
@@ -30,10 +29,7 @@
 								<a href= "{{ URL::to('spaces/'.$value->friend_id) }}" > {{User::find($value->friend_id)->username }}  </a>
 							</td>
 							<td>
-							{{ Form::open(array('url' => 'acceptFriend/')) }}
-							{{ Form::hidden('friend_id', $value->friend_id) }}
-							{{ Form::submit('Accept ?', array('class' => 'btn btn-info')) }}
-							{{ Form::close() }}
+							<a href=# class="accept btn btn-success" data-userid="{{$value->friend_id}}">Accept</a>
 							</td>
 						</tr>
 					@endforeach
@@ -43,5 +39,47 @@
 		
 		</div>
 	</div>
+	<script>
+		$(function(){
+			$("a.accept").click(function(){
+				var el = this;
+				var user_id = el.dataset.userid;
+				$.ajax({
+					type:"POST",
+					url:"{{ URL::to('acceptFriend/') }}",
+					data:{
+						"friend_id" : user_id,
+						"_token" : "{{ csrf_token() }}",
+					},
+					success: function() {
+						$(el).parent().parent().remove();
+					},
+					error: function(e) {
+						console.log("Error accept", e);
+					},
+				});
+			});
+
+			$("a.remove").click(function(){
+				var el = this;
+				var user_id = el.dataset.userid;
+				$.ajax({
+					type:"POST",
+					url:"{{ URL::to('removeFriend/') }}",
+					data:{
+						"friend_id" : user_id,
+						"_token" : "{{ csrf_token() }}",
+					},
+					success: function() {
+						$(el).parent().parent().remove();
+					},
+					error: function(e) {
+						console.log("Error remove", e);
+					},
+				});
+			});
+		});
+
+	</script>
 @endif			
 

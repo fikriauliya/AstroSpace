@@ -1,6 +1,9 @@
+@extends('layouts.master')
+<?php /*
 <html>
 
-<head>
+<head>*/ ?>
+@section('header')
 {{ HTML::script('js/rtcMultiConnection/rtcMultiConnection.min.js') }}
 
 {{ HTML::script('js/rtcMultiConnection/getMediaElement.min.js') }}
@@ -34,11 +37,13 @@
 
 </script>
 
-
-</head>
+@stop
+<?php //</head> ?>
 
 <body>
-<button id="open-session"> Open Session </button>
+@section('content')
+
+<button id="open-session" class="btn btn-success"> Start video chat! </button>
 <div id="videoContainer">
 <table class="table table-bordered" style="border-left: 1px solid black; width:100%;">
 	<tbody>
@@ -54,7 +59,7 @@
 
 <div id="exitRoom">
 	{{ Form::open(array('url' => 'webrtc/exitRoom')) }}
-	{{ Form::submit('Exit room?') }}
+	{{ Form::submit('Quit room', array('class' => 'btn btn-danger')) }}
 	{{ Form::close() }}
 </div>
 
@@ -141,7 +146,7 @@ connection.connect();
 
 
 </script>
+@stop
+<?php /*</body>
 
-</body>
-
-</html>
+</html>*/ ?>
