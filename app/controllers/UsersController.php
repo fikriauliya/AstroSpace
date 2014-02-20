@@ -53,6 +53,8 @@ class UsersController extends BaseController {
 			$user->hasLogin = 1;
 			$user->save();
 		}
+		//for debugging
+		$hasLogin = 0;
 		return View::make('users.dashboard')->with('hasLogin',$hasLogin);
 	}
 
