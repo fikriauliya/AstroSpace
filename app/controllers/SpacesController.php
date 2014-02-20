@@ -8,10 +8,10 @@ class SpacesController extends BaseController {
 		$visible_blog_posts = array();
 
 		foreach ($blog_posts as $blog_post) {
-			if ($blog_post->posted_by_id != $auth_user->id && $blog_post->is_private) {
+			if ( (!Auth::check() || $blog_post->posted_by_id != $auth_user->id) && $blog_post->is_private) {
 				$visible_tos = explode(',', $blog_post->visible_tos);
 
-				if (in_array($auth_user->id, $visible_tos)) {
+				if (Auth::check() && in_array($auth_user->id, $visible_tos)) {
 					array_push($visible_blog_posts, $blog_post);
 				}
 			} else {
