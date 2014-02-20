@@ -6,7 +6,7 @@
 		<h3> You have active video chat room.</h3>
 		<?php
 			$room_id = $user->videoRoom->room_id; 
-			$participants = VideoRoom::where('room_id', '=', $room_id);
+			$participants = VideoRoom::where('room_id', '=', $room_id)->get();
 		?>
 		{{ Form::open(array('url' => 'webrtc/', 'method'=>'GET')) }}
 		{{ Form::submit('Go to video chat room', array('class' => 'btn btn-success')) }}
@@ -15,9 +15,10 @@
 		<h4> Participants: </h4>
 		<table>
 			<tbody>
-				@foreach($participants as $key => $value)
+				@foreach($participants as $value)
 				<tr>
-					<td> {{{ User::find($value->friend_id)->username }}} </td>
+					<?php $participant = User::find($value->owner_id); ?>
+					<td> {{ HTML::link('spaces/'.$participant->id, $participant->username) }}  </td>
 				</tr>
 				@endforeach
 			</tbody>
