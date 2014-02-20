@@ -38,7 +38,9 @@ class BlogPostsController extends BaseController {
 		} else {
 			$blog_post->is_private = false;
 		}
-		$blog_post->visible_tos = join(',', Input::get('visible_tos'));
+		if (Input::get('visible_tos') != NULL) {
+			$blog_post->visible_tos = join(',', Input::get('visible_tos'));
+		}
 		$blog_post->save();
 
 		return Redirect::to('spaces/'.$user_id)->with('message', 'New post created');
