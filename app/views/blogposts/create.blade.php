@@ -55,19 +55,42 @@
 
   <script type="text/javascript">
     $(function() {
+      var friends = {{$friends}};
+      console.log(friends);
+
+      var friends2 = new Array;
+      $.map(friends, function(data) {
+        var new_data = {
+          id: data.id,
+          username: data.username,
+
+          toString: function () {
+            return JSON.stringify(this.username);
+          },
+          toLowerCase: function () {
+            return this.username.toLowerCase();
+          },
+          indexOf: function (string) {
+            return String.prototype.indexOf.apply(this.username, arguments);
+          },
+          replace: function (string) {
+            return String.prototype.replace.apply(this.username, arguments);
+          }
+        }
+        friends2.push(new_data);
+      });
       // instantiate the bloodhound suggestion engine
       var numbers = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local:  ["(A)labama","Alaska","Arizona","Arkansas","Arkansas2","Barkansas"]
+        datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.username); },
+        queryTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d); },
+        local: friends2
       });
 
       // initialize the bloodhound suggestion engine
       numbers.initialize();
 
-      $('.typeahead').typeahead(
-      {
-        items: 4,
+      $('.typeahead').typeahead({
+        displayKey: 'username',
         source:numbers.ttAdapter()  
       }); 
     });

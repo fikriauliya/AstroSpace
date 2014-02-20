@@ -13,7 +13,8 @@ class BlogPostsController extends BaseController {
 	}
 
 	public function create() {
-		return View::make('blogposts.create');
+		$friends = Auth::user()->friends2->toJson();
+		return View::make('blogposts.create')->with('friends', $friends);
 	}
 
 	public function store() {
