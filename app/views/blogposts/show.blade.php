@@ -2,9 +2,9 @@
 @section('content')
   <div class="row">
     <div class="col-sm-12">
-        <h3>{{ $blogpost->title }}</h3>
-        <p>{{ $blogpost->content }}</p>
-        <small>Mood: {{ $blogpost->mood }}</small>
+        <h3>{{{ $blogpost->title }}}</h3>
+        <p>{{{ $blogpost->content }}}</p>
+        <small>Mood: {{{ $blogpost->mood }}}</small>
         <hr/>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <div class="col-sm-8">
       @foreach($comments as $comment)
         <div style="background-color: rgb(247, 247, 249); padding:20px; margin-bottom: 10px">
-          <p style="font-size:small">{{$comment->content}}</p>
+          <p style="font-size:small">{{{$comment->content}}}</p>
           <small>By 
             {{ HTML::link('spaces/'.$comment->postedBy->id, $comment->postedBy->username) }}</small>
         </div>
