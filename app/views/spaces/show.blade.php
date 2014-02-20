@@ -4,8 +4,14 @@
 	<div class="row">
 		<div class="col-sm-2">
 			<img src="..." alt="..." style="width:100%; height: 200px" class="img-thumbnail"/>
+			@if (Auth::check() && Auth::user()->id == $user->id)
+	  		{{ HTML::link("spaces/".$user->id."/edit", 'Edit my space', array('class' => 'btn btn-warning', 'style' => 'margin-top:20px')) }}
+	  	@endif
 		</div>
-		<div class="col-sm-10">
+		<div class="col-sm-8">
+			@if ($user->header)
+				<h4>{{{ $user->header }}}</h4>
+			@endif
 			<ul id="myTab" class="nav nav-tabs">
 			  <li class="active" ><a href="#blog" data-toggle="tab">Blog</a></li>
 			  <li><a href="#profile" data-toggle="tab">Profile</a></li>
@@ -23,7 +29,6 @@
 				{{ Form::close() }}
 				@endif
 			</div>
-
 
 			<!-- Tab panes -->
 			<div id="myTabContent" class="tab-content">
@@ -77,7 +82,7 @@
 							</tbody>
 						</table> 
 						@if (Auth::check() && Auth::user()->id == $user->id)
-				  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit', array('class' => 'btn btn-warning')) }}
+				  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit my profile', array('class' => 'btn btn-warning')) }}
 				  	@endif
 					</div>
 			  </div> <!-- for tab-pane profile -->
@@ -89,5 +94,12 @@
 
 			</div>
 		</div>
+		@if ($user->right_content)
+			<div class="col-sm-2 panel panel-default" style="margin-top:20px">
+				<div class="panel-body">
+					{{{$user->right_content}}}
+				</div>
+			</div>
+		@endif
 	</div>
 @stop
