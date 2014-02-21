@@ -1,4 +1,17 @@
 @extends('layouts.master')
+@section('header')
+  <script type="text/javascript">
+    $(function() {
+      $('#privacy').change(function() {
+        if ($(this).val() == 'private') {
+          $('#visible_for_group').show();
+        } else {
+          $('#visible_for_group').hide();
+        }
+      });
+    });
+  </script>
+@stop
 
 @section('content')
   <div class="row">
@@ -42,9 +55,9 @@
         </div>
         <div class="form-group">
           <label for="privacy">Visibility</label>
-          {{ Form::select('privacy', array('private' => 'Private', 'public' => 'Public'), '', array('class'=>'form-control')) }}
+          {{ Form::select('privacy', array('private' => 'Private', 'public' => 'Public'), '', array('id'=>'privacy', 'class'=>'form-control')) }}
         </div>
-        <div class="form-group">
+        <div class="form-group" id="visible_for_group">
           <label for="visible_to">Visible to</label>
           @foreach($friends as $friend)
             <div>
