@@ -2,7 +2,7 @@
 $(function(){
    
    $("#asst_videocall_exit").popover({
-      trigger:"hover focus",
+      trigger:"click",
       title: "CLICK HERE!",
       content: "Exit from / deactivate video call room. (you need to do this before creating or approving another video call room!)",
       placement: "auto right",
@@ -21,7 +21,11 @@ $(function(){
    });
 
    $("#asst_webRTC_approve2").click(function(){
-      setTimeout( function(){$("#asst_videocall_exit").popover("show")}, 300);
+		//Go to step 3
+		$("#asst_progress").css("width","67%");
+		$("#asst_modaltitle").html("Step 3:");
+      $("#asst_stepdescription").html("Finish the video call by clicking quit room button");
+		setTimeout( function(){$("#asst_videocall_exit").popover("show")}, 300);
    });
 
 });

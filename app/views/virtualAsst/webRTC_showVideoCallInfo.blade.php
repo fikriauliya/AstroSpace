@@ -10,17 +10,21 @@ $(function(){
    $("#asst_webRTC_approve1").popover({
       trigger:"hover focus",
       content: "Approve video call request from Friend1 and go there",
-      placement: "auto right",
+      placement: "top",
    });
 
    $("#asst_webRTC_approve2").popover({
-      trigger:"hover focus click",
+      trigger:"click",
 		title: "CLICK HERE!",
       content: "Approve video call request from Friend2 and go there",
-      placement: "auto right",
+      placement: "right",
    });
 
 	$("#asst_space_videocallinfo").click(function(){
+		//Go to step 2
+		$("#asst_progress").css("width","33%");
+		$("#asst_modaltitle").html("Step 2:");
+		$("#asst_stepdescription").html(" To have an active room you can either cre    ate new room or approve other user request.<br>For this tutorial, approve the request from Friend2");
    	setTimeout( function(){$("#asst_webRTC_approve2").popover("show")}, 300);
 	});
 

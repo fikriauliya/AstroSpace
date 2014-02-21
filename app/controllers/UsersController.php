@@ -52,10 +52,11 @@ class UsersController extends BaseController {
 		if ($hasLogin == 0) {
 			$user->hasLogin = 1;
 			$user->save();
+			return View::make('users.dashboard')->with('hasLogin',$hasLogin);
 		}
-		//for debugging
-		$hasLogin = 0;
-		return View::make('users.dashboard')->with('hasLogin',$hasLogin);
+		else {
+			return Redirect::to('spaces/'.$user->id)->with('user',$user);
+		}
 	}
 
 	public function getLogout() {

@@ -1,18 +1,33 @@
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-	Launch virtual assistant
+<div class="container-fluid">
+<h3> THIS IS YOUR FIRST LOGIN</h3>
+<h4> WELCOME TO ASTROSPACE! </h4>
+
+<button id="asst_launch" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+	Launch tutorial for video call
 </button>
+
+</div>
+
 
 <script> 
 $(function(){
 	$("#myModal").modal({
-		show: true,
-		backdrop: 'static'
+		show: 	 false,
+		backdrop: "static"
 	});
+
+	$("#asst_launch").popover({
+		trigger:"hover focus click",
+		content: "Click here to launch video call tutorial",
+		placement: "right",
+	});
+
+	setTimeout(function(){ $("#asst_launch").popover("show"); }, 100);
 
 	$("#asst_home").popover({
 		trigger:"hover focus",
 		content: "Your home page",
-		placement: "auto top",
+		placement: "auto",
 	});
 	
 	$("#asst_memberlist").popover({
@@ -42,16 +57,29 @@ $(function(){
 	});
 
 	$("#asst_videocall_exit").click(function(){
+		//Go to finish page
+		$("#asst_progress").css("width","100%");
+		$("#asst_modaltitle").html("Finished!");
+		$("#asst_stepdescription").html("");
+
 		$("#webRTC_videocall").hide();
 		$("#asst_finish").show();
 		$("#spaces_show").hide();
 	});	
 	
-	$("#asst_finish_restart").click(function(){
-		setTimeout(function(){ $("#asst_space_videocallinfo").popover("show");  },300);
-		$("#webRTC_videocall").hide();
-		$("#asst_finish").hide();
-		$("#spaces_show").show();
+	$("#asst_finish_restart,#asst_launch").each(function(){
+		$(this).click(function(){
+
+			setTimeout(function(){ $("#asst_space_videocallinfo").popover("show");  },300);
+			//Back to the first step
+			$("#asst_progress").css("width","0%");
+			$("#asst_modaltitle").html("Step 1:");
+			$("#asst_stepdescription").html("See information on video call on video call info tab");
+			$("#webRTC_videocall").hide();
+			$("#asst_finish").hide();
+			$("#spaces_show").show();
+			$("#asst_space_blog").tab("show");
+		});
 	});
 
 
@@ -66,7 +94,8 @@ $(function(){
 		<div class="modal-content">	
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title"> Modal Title </h4>
+				<h4 class="modal-title" id="asst_modaltitle"> Step 1: </h4>
+				<p id="asst_stepdescription">See information on video call on video call info tab</p>
 			</div> <!-- modal-header -->
 			
 			<div class="modal-body" >
@@ -129,8 +158,15 @@ $(function(){
 			</div> <!-- modal-body -->
 	
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary"> Save changes </button>
+				<div class="container-fluid">
+					<div class="progress progress-striped active">
+						<div id="asst_progress" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
+						</div>
+					</div>
+				</div>
+				<div class="container-fluid">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
 			</div> <!-- modal-footer -->
 
 		</div> <!-- modal-content-->
@@ -138,7 +174,3 @@ $(function(){
 </div> <!-- modal fade -->
 
 
-<div>
-	<h3> Hello world! </h3>
-	<h4> This is your first login ! </h4>
-</div>

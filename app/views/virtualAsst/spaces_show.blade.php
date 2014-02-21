@@ -20,13 +20,13 @@ $(function(){
    });
 
    $("#asst_space_videocallinfo").popover({
-      trigger:"hover focus click",
+      trigger:"click",
 		title: "CLICK HERE!",
       content: "Information on video call",
       placement: "top",
    });
 
-   setTimeout( function(){$("#asst_space_videocallinfo").popover("show")}, 500);
+   //setTimeout( function(){$("#asst_space_videocallinfo").popover("show")}, 500);
 
 });
 
