@@ -27,6 +27,7 @@ Route::post('webrtc/exitRoom', 'WebRTCController@exitRoom');
 
 // Auth
 Route::controller('users', 'UsersController');
+Route::controller('password', 'RemindersController');
 
 // Profiles
 Route::resource('profiles', 'ProfilesController', array('only' => array('show', 'edit', 'update')));
@@ -35,4 +36,3 @@ Route::resource('spaces', 'SpacesController', array('only'=> array('show', 'edit
 Route::resource('themes', 'ThemesController', array('only' => array('edit', 'update')));
 Route::resource('blogposts', 'BlogPostsController', array('only' => array('show', 'create', 'store')));
 Route::resource('comments', 'CommentsController', array('only' => array('store')));
-
