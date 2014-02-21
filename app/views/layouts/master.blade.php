@@ -75,6 +75,12 @@
       @endif
       @yield('content')
     </div><!-- /.container -->
+	
+	@if( !isset($no_ads) || $no_ads == 0)
+	<div id="astrospace_ads" class="container ads" style="overflow: hidden; width:600px; height:200px;">
 
+		<iframe src="{{ URL::to('ads/bottom') }}" width="600" height="200" scrolling="no" frameborder="0" style="overflow: hidden;"></iframe>
+	</div><!-- astrospace_ads -->
+	@endif
   </body>
 </html>

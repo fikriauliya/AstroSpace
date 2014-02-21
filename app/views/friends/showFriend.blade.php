@@ -2,6 +2,7 @@
 	<div class="tab-pane"  id="showFriend">
 		<div style="margin: 20px">
 			<h3> Friends List </h3>
+			<div style="margin:10px">
 			<table class="table table-striped table-bordered">
 				<tbody>
 					@foreach($user->friends as $key => $value)
@@ -18,9 +19,10 @@
 					@endforeach
 				</tbody>
 			</table>
+			</div> <!-- margin:10px -->
 		
 			<h3> Friend Requests </h3>
-			<div style="margin: 20px">
+			<div style="margin:10px">
 			<table class="table table-striped table-bordered">
 				<tbody>
 					@foreach($user->friend_requests as $key => $value) 
@@ -35,7 +37,7 @@
 					@endforeach
 				</tbody>
 			</table>
-			</div>
+			</div><!-- margin:10px-->
 		
 		</div>
 	</div>

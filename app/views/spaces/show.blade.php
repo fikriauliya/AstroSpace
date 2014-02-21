@@ -18,6 +18,7 @@
 			  @if (Auth::check() && Auth::user()->id == $user->id)
 			  <li><a href="#showFriend" data-toggle="tab">ShowFriend</a></li>
 			  <li><a href="#showVideoCallInfo" data-toggle="tab">Video Call Info </a></li>
+			  <li><a href="#manageAds" data-toggle="tab">Manage Ads</a></li>
 			  @endif
 			</ul>
 			<!-- just for testing add friends-->
@@ -89,6 +90,7 @@
 				@if (Auth::check() && Auth::user()->id == $user->id)
 				<?php echo $showFriend; ?>
 				<?php echo $showVideoCallInfo; ?>
+				<?php echo $manageAds ; ?>
 				@endif		
 
 

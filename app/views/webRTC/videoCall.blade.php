@@ -78,7 +78,7 @@
 				@if($friend->videoCallRequests()->where('room_id', '=', $room_id)->exists() || ($friend->videoRoom()->exists()&& $friend->videoRoom->room_id == $room_id) )
 				<p>Is invited</p>
 				@else
-				<a href="#" data-userid="{{{$friend->id}}}" class="invite">Invite</a>
+				<a href="#" data-userid="{{{$friend->id}}}" class="btn btn-default invite">Invite</a>
 				@endif
 			</td>
 		</tr>

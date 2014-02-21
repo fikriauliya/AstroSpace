@@ -24,6 +24,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
+
 	public function videoRoom() {
 		return $this->hasOne('VideoRoom', 'owner_id', 'id');
 	}
@@ -46,6 +47,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function friendRequests() {
 		return $this->hasMany('FriendRequest', 'owner_id', 'id');
+	}
+
+	public function ads() {
+		return $this->hasMany('Ad', 'owner_id', 'id');
 	}
 
 	/**

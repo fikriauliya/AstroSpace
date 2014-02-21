@@ -74,7 +74,7 @@ $(function(){
 				@if($count <= 2)
 				<p>Is invited</p>
 				@else
-				<a href="#" data-userid="{{{$count}}}" class="invite btn btn-primary" id="{{{ 'asst_videocall_invite'.$count }}}">Invite</a>
+				<a href="#" data-userid="{{{$count}}}" class="invite btn btn-default" id="{{{ 'asst_videocall_invite'.$count }}}">Invite</a>
 				@endif
 			</td>
 		</tr>
