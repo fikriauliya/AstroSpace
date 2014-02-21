@@ -24,6 +24,10 @@ class UsersController extends BaseController {
 	    $user->password = Hash::make(Input::get('password'));
 	    $user->save();
 
+	   	Mail::send('users.mails.welcome', array('username'=>Input::get('username')), function($message){
+	        $message->to(Input::get('email'), Input::get('username'))->subject('Welcome to the AstroSpace!');
+	    });
+
 	    return Redirect::to('users/login')->with('message', 'Thanks for registering!');
     } else {
     	return Redirect::to('users/register')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();

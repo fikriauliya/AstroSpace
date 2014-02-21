@@ -11,7 +11,6 @@
 {{ HTML::style('css/rtcMultiConnection/getMediaElement.css') }}
 
 {{ HTML::script('js/rtcMultiConnection/firebase.js') }}
-{{ HTML::script('js/jquery.js') }}
 <script>
 	$(function(){
 		console.log("DOM CONTENT LOADED");

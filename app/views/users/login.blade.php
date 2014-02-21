@@ -21,6 +21,11 @@
           {{ Form::submit('Login', array('class'=>'btn btn-primary'))}}          
         </div>
       </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          {{ HTML::link('password/remind', 'Forgot password?') }}
+        </div>
+      </div>
 		{{ Form::close() }}
 	</h3>
 @stop

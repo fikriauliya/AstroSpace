@@ -38,4 +38,29 @@ class SpacesController extends BaseController {
 		//return View::make('spaces.show')->with('user', $user)->with('blog_posts', $visible_blog_posts);
 		return $view;
 	}
+
+	public function edit($id) {
+		$user = User::find($id);
+		if (Auth::user()->id == $user->id) {
+			return View::make('spaces.edit')->with('user', $user);
+		} else {
+			//warning, attacker!
+ 	    return Redirect::to('/');
+ 	  }
+	}
+
+	public function update($id) {
+		// TODO: except password & email
+		$user = User::find($id);
+		if (Auth::user()->id == $user->id) {
+			$user->header = Input::get('header');
+			$user->right_content = Input::get('right_content');
+	    $user->save();
+
+			return Redirect::to('spaces/'.$id)->with('message', 'Space updated');
+		} else {
+			//warning, attacker!
+  	  return Redirect::to('/');
+		}
+	}
 }
