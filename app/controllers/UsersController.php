@@ -112,6 +112,13 @@ class UsersController extends BaseController {
 				$user->password = Hash::make(Input::get('password'));
 				$user->save();
 
+				Mail::send('users.mails.password_changed', 
+		   		array('username'=>$user->username),
+		   		function($message) use ($user){
+		    		$message->to($user->email, $user->username)->subject('Password change notification');
+		    	}
+	    	);
+
 				return Redirect::to('/')->with('message', 'Your password has been updated');		
 			} else {
 	    	return Redirect::to('users/changepassword')->with('message', "The existing password doesn't match");
