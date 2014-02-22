@@ -3,6 +3,11 @@
 class BlogPost extends Eloquent {
 	protected $table = 'blogposts';
 
+	public static $rules = array(
+    'title'=>'required|min:2',
+    'content'=>'required',
+    );
+
 	public function postedBy() {
 		return $this->belongsTo('User', 'posted_by_id', 'id');
 	}

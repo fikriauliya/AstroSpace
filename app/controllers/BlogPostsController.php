@@ -24,23 +24,30 @@ class BlogPostsController extends BaseController {
 
 	public function store() {
 		$user_id = Auth::user()->id;
-		$blog_post = new BlogPost;
-		$blog_post->title = Input::get('title');
-		$blog_post->content = Input::get('content');
-		$blog_post->mood = Input::get('mood');
-		$blog_post->posted_by_id = $user_id;
-		if (Input::get('privacy') == 'private') {
-			$blog_post->is_private = true;
+
+    $validator = Validator::make(Input::all(), BlogPost::$rules);
+
+    if ($validator->passes()) {
+			$blog_post = new BlogPost;
+			$blog_post->title = Input::get('title');
+			$blog_post->content = Input::get('content');
+			$blog_post->mood = Input::get('mood');
+			$blog_post->posted_by_id = $user_id;
+			if (Input::get('privacy') == 'private') {
+				$blog_post->is_private = true;
+			} else {
+				$blog_post->is_private = false;
+			}
+
+			//TODO: check whether they are really friend
+			if (Input::get('visible_tos') != NULL) {
+				$blog_post->visible_tos = join(',', Input::get('visible_tos'));
+			}
+			$blog_post->save();
+
+			return Redirect::to('spaces/'.$user_id)->with('message', 'New post created');
 		} else {
-			$blog_post->is_private = false;
+    	return Redirect::to('blogposts/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
 		}
-
-		//TODO: check whether they are really friend
-		if (Input::get('visible_tos') != NULL) {
-			$blog_post->visible_tos = join(',', Input::get('visible_tos'));
-		}
-		$blog_post->save();
-
-		return Redirect::to('spaces/'.$user_id)->with('message', 'New post created');
 	}
 }
