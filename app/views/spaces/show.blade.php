@@ -5,7 +5,7 @@
 		<div class="col-sm-2">
 			<img src="{{$photo_path}}" alt="..." style="width:100%; height: 120px" class="img-thumbnail"/>
 			@if (Auth::check() && Auth::user()->id == $user->id)
-	  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit my photo', array('class' => 'btn btn-info', 'style' => 'margin-top:20px')) }}
+	  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit my profile', array('class' => 'btn btn-info', 'style' => 'margin-top:20px')) }}
 	  		{{ HTML::link("spaces/".$user->id."/edit", 'Edit my space', array('class' => 'btn btn-danger', 'style' => 'margin-top:10px')) }}
 	  	@endif
 		</div>
@@ -83,9 +83,6 @@
 								</tr>
 							</tbody>
 						</table> 
-						@if (Auth::check() && Auth::user()->id == $user->id)
-				  		{{ HTML::link("profiles/".$user->id."/edit", 'Edit my profile', array('class' => 'btn btn-warning')) }}
-				  	@endif
 					</div>
 			  </div> <!-- for tab-pane profile -->
 				@if (Auth::check() && Auth::user()->id == $user->id)
