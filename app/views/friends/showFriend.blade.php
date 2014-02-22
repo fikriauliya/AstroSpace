@@ -5,14 +5,17 @@
 			<div style="margin:10px">
 			<table class="table table-striped table-bordered">
 				<tbody>
-					@foreach($user->friends as $key => $value)
+					@foreach($user->friends2 as $key => $friend)
 					<tr>
 						<td>
-							<a href=" {{ URL::to('spaces/'.$value->friend_id)}}"> {{ User::find($value->friend_id)->username }} </a>
+							<a href=" {{ URL::to('spaces/'.$friend->id)}}"> {{ $friend->username }} </a>
 						</td>
 						<td>
 
-							<a href=# class="remove btn btn-danger" data-userid="{{$value->friend_id}}">Remove</a>
+							{{ Form::open(array('url' => 'removeFriend/')) }}
+							{{ Form::hidden('friend_id', $friend->id) }}
+							{{ Form::submit('Remove', array('class' => 'btn btn-danger') ) }}
+							{{ Form::close() }}
 
 						</td>
 					</tr>
@@ -25,13 +28,16 @@
 			<div style="margin:10px">
 			<table class="table table-striped table-bordered">
 				<tbody>
-					@foreach($user->friend_requests as $key => $value) 
+					@foreach($user->friend_requests2 as $key => $friend) 
 						<tr>
 							<td>
-								<a href= "{{ URL::to('spaces/'.$value->friend_id) }}" > {{User::find($value->friend_id)->username }}  </a>
+								<a href= "{{ URL::to('spaces/'.$friend->id) }}" > {{$friend->username }}  </a>
 							</td>
 							<td>
-							<a href=# class="accept btn btn-success" data-userid="{{$value->friend_id}}">Accept</a>
+							{{ Form::open(array('url'=>'acceptFriend')) }}
+							{{ Form::hidden('friend_id', $friend->id) }}
+							{{ Form::submit('Accept', array('class' => 'btn btn-success')) }}
+							{{ Form::close() }}
 							</td>
 						</tr>
 					@endforeach
@@ -41,6 +47,8 @@
 		
 		</div>
 	</div>
+
+{{--	
 	<script>
 		$(function(){
 			$("a.accept").click(function(){
@@ -83,5 +91,6 @@
 		});
 
 	</script>
+	--}}
 @endif			
 
