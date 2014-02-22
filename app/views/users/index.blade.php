@@ -21,11 +21,11 @@
 	  		@foreach($users as $key => $value)
 		  		<tr>
 		  			<td>{{ HTML::link('spaces/' . $value->id, $value->username) }}</td>
-		  			<td>{{$value->email}}</td>
-		  			<td>{{$value->aim}}</td>
-						<td>{{$value->msn}}</td>
-						<td>{{$value->irc}}</td>
-						<td>{{$value->icq}}</td>
+		  			<td>{{{$value->email}}}</td>
+		  			<td>{{{$value->aim}}}</td>
+						<td>{{{$value->msn}}}</td>
+						<td>{{{$value->irc}}}</td>
+						<td>{{{$value->icq}}}</td>
 						@if(Auth::check())
 						<td>
 						<?php 

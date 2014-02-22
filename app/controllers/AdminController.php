@@ -46,18 +46,6 @@ class AdminController extends BaseController{
 		$username = $user->username;
 		if (count($user) > 0) {
 			//Delete cleanly
-			$user->ads()->delete();
-			$user->comments()->delete();
-			$others_comment = $user->comments2()->get();
-			foreach($others_comment as $key => $value) $key->delete();
-
-			$user->blogPosts()->delete();
-			Friend::where('friend_id','=',$user_id)->delete();
-			$user->friends()->delete();
-			$user->friendRequests()->delete();
-			FriendRequest::where('host_id','=',$user_id)->delete();
-			$user->videoCallRequests()->delete();
-			$user->videoRoom()->delete();
 			$user->delete();
 
 		}

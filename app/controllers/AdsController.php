@@ -40,7 +40,7 @@ class AdsController extends BaseController {
 		$budget = Input::get('budget');
 		$num_budget = 0;
 		if (!is_numeric($budget) || (int)$budget <= 0) {
-			return Redirect::to($current_url)->with('message','Budget is not a positive number!"');
+			return Redirect::to($current_url)->with('warning','Budget is not a positive number!"');
 		}
 		else {
 			$num_budget = (int)$budget; 
@@ -57,7 +57,7 @@ class AdsController extends BaseController {
 		$pattern = '/[^-A-Za-z0-9+&@#\/%?=~_|!:,.;\(\)]/';
 		$safe_url = preg_replace($pattern, '', $url);
 		if ( ( strpos($safe_url, "http://") != 0 && strpos($safe_url, "https://") != 0) || ($url == "" || $url != $safe_url)){
-			return Redirect::to($current_url)->with('message', 'The url is either not full url path or it contain dangerous character');
+			return Redirect::to($current_url)->with('warning', 'The url is either not full url path or it contain dangerous character');
 		}
 		$ad->url = $safe_url;
 		$ad->save();

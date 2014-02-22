@@ -10,7 +10,7 @@ class BlogPostsController extends BaseController {
 		$blog_post = BlogPost::find($id);
 
 		if (!$blog_post->is_visible_to_user()) {
-			return Redirect::to('/')->with('message', 'This post is private');
+			return Redirect::to('/')->with('warning', 'This post is private');
 		}
 
 		$comments = $blog_post->comments;
@@ -47,7 +47,7 @@ class BlogPostsController extends BaseController {
 
 			return Redirect::to('spaces/'.$user_id)->with('message', 'New post created');
 		} else {
-    	return Redirect::to('blogposts/create')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+    	return Redirect::to('blogposts/create')->with('warning', 'The following errors occurred')->withErrors($validator)->withInput();
 		}
 	}
 }

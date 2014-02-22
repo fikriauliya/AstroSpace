@@ -11,7 +11,7 @@ class CommentsController extends BaseController {
 
     $blog_post = BlogPost::find(Input::get('blog_post_id'));
     if (!$blog_post->is_visible_to_user()) {
-      return Redirect::to('/')->with('message', 'This post is private');
+      return Redirect::to('/')->with('warning', 'This post is private');
     }
 
     $validator = Validator::make(Input::all(), Comment::$rules);
@@ -25,7 +25,7 @@ class CommentsController extends BaseController {
 
       return Redirect::to('blogposts/'.$blog_post->id)->with('message', 'Your comment has been posted');
     } else {
-      return Redirect::to('blogposts/'.$blog_post->id)->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+      return Redirect::to('blogposts/'.$blog_post->id)->with('warning', 'The following errors occurred')->withErrors($validator)->withInput();
     }
   }
 }

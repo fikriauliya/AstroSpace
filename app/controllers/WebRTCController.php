@@ -16,7 +16,7 @@ class WebRTCController extends BaseController {
 		//Check whether the user is authorized to go to the room
 		if (!($user->videoRoom()->exists()) ){
 			//redirect
-			Session::flash('message', 'You do not have any active video chat room');
+			Session::flash('warning', 'You do not have any active video chat room');
 			return Redirect::to('spaces/'.$user->id);
 		}
 
@@ -30,7 +30,7 @@ class WebRTCController extends BaseController {
 		
 		//check whether the user already have active room
 		if ($user->videoRoom()->exists()) {
-			Session::flash('message', 'You already have an active video call room!');
+			Session::flash('warning', 'You already have an active video call room!');
 			return Redirect::to('spaces/'.$user->id);
 		}
 
@@ -55,7 +55,7 @@ class WebRTCController extends BaseController {
 
 		//check whether the user have active room
 		if (!($user->videoRoom()->exists()) ) {
-			Session::flash('message', 'You do not have any active room!');
+			Session::flash('warning', 'You do not have any active room!');
 			return Redirect::to('spaces/'.$user->id);
 		}
 
@@ -65,7 +65,7 @@ class WebRTCController extends BaseController {
 		$friend = User::find($friend_id);
 
 		if ($friend->videoCallRequests()->where('room_id','=',$room_id)->exists() || ($friend->videoRoom()->exists() && $friend->videoRoom->room_id == $room_id) ){
-			Session::flash('message', 'The user is already invited!');
+			Session::flash('warning', 'The user is already invited!');
 			return "User already invited!";
 		}	
 
@@ -89,19 +89,19 @@ class WebRTCController extends BaseController {
 
 		//check if the user already have an active room
 		if ($user->videoRoom()->exists()){
-			Session::flash('message', 'You already have an active room!');
+			Session::flash('warning', 'You already have an active room!');
 			return Redirect::back();
 		}
 
 		//check if the room exist
 		if (!VideoRoom::where('room_id','=',$room_id)->exists()){
-			Session::flash('message', 'The room is not exist anymore');
+			Session::flash('warning', 'The room is not exist anymore');
 			return Redirect::back();
 		}
 
 		//check if the user really have an invitation
 		if (!$user->videoCallRequests()->where('room_id','=',$room_id)->exists()){
-			Session::flash('message', 'You do not have the invitation to the room!');
+			Session::flash('warning', 'You do not have the invitation to the room!');
 			return Redirect::back();
 		}
 		
@@ -126,7 +126,7 @@ class WebRTCController extends BaseController {
 
 		//check whether the user have active room
 		if (!$user->videoRoom()->exists()) {
-			Session::flash('message', 'You do not have any active room to exit!');
+			Session::flash('warning', 'You do not have any active room to exit!');
 			return Redirect::to('spaces/'.$user->id);
 		}
 

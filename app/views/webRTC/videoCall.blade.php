@@ -66,8 +66,8 @@
 <h3>Invite Friend:</h3>
 <table class="table table-striped table-bordered">
 	<tbody>
-		@foreach($user->friends as $key => $value)
-		<?php $friend = User::find($value->friend_id);
+		@foreach($user->friends2 as $key => $friend)
+		<?php 
 				$room_id = $user->videoRoom->room_id;
 		?>
 		<tr>

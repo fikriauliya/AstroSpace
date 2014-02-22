@@ -45,10 +45,10 @@
           <ul class="nav navbar-nav">
     			 	@if(Auth::check())
     				  <li>{{ HTML::link('spaces/'.Auth::user()->id, 'Home') }}</li>
-              <li>{{ HTML::link('messages/', 'Messages') }}</a></li>
+              <li>{{ HTML::link('messages/', 'Messages') }}</li>
     				@endif
-            <li>{{ HTML::link('users', 'Memberlist') }}</a></li>
-				<li>{{ HTML::link('users/search', 'User Search')}}</a></li>
+            <li>{{ HTML::link('users', 'Memberlist') }}</li>
+				<li>{{ HTML::link('users/search', 'User Search')}}</li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
@@ -57,13 +57,14 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>{{ HTML::link('themes/'.(Auth::user()->id).'/edit', "Edit themes") }}</li>
-                  <li>{{ HTML::link('users/changepassword', 'Change password') }}</li>
-                @if (Auth::user()->role == 'admin')
-						<li>{{ HTML::link('admin/', 'Admin area') }} </li>
-					 @endif
+                  <li>{{ HTML::link('statistics/show', 'Show web statistic') }} </li>
+						<li>{{ HTML::link('users/changepassword', 'Change password') }}</li>
+                  @if (Auth::user()->role == 'admin')
+      						  <li>{{ HTML::link('admin/', 'Admin area') }} </li>
+      					  @endif
                 </ul>
               </li>
-              <li>{{ HTML::link('users/logout', 'Log out') }}</li>
+              <li>{{ HTML::link('users/logout', 'Log out')}}</li>
             @else
               <li>{{ HTML::link('users/register', 'Register') }} </li>
               <li>{{ HTML::link('users/login', 'Log in') }} </li>
@@ -79,6 +80,12 @@
           <p class="alert alert-info">{{ Session::get('message') }}</p>
         </div>
       @endif
+      @if(Session::has('warning'))
+        <div class="row">
+          <p class="alert alert-danger">{{ Session::get('warning') }}</p>
+        </div>
+      @endif
+
       @yield('content')
     </div><!-- /.container -->
 	

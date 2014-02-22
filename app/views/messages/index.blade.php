@@ -14,8 +14,8 @@
 	  	<tbody>
 	  		@foreach($received_messages as $message)
 		  		<tr>
-		  			<td>{{$message->sender->username}}</td>
-		  			<td>{{$message->content}}</td>
+		  			<td>{{{$message->sender->username}}}</td>
+		  			<td>{{{$message->content}}}</td>
 					</tr>
 				@endforeach
 	  	</tbody>
@@ -32,8 +32,8 @@
 	  	<tbody>
 	  		@foreach($sent_messages as $message)
 		  		<tr>
-		  			<td>{{$message->sender->username}}</td>
-		  			<td>{{$message->content}}</td>
+		  			<td>{{{$message->sender->username}}}</td>
+		  			<td>{{{$message->content}}}</td>
 					</tr>
 				@endforeach
 	  	</tbody>
