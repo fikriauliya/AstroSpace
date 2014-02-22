@@ -2,6 +2,9 @@
 
 class Comment extends Eloquent {
   protected $table = 'comments';
+	public static $rules = array(
+    'content'=>'required'
+   );
 
   public function postedBy() {
     return $this->belongsTo('User', 'posted_by_id', 'id');
