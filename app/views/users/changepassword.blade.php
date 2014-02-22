@@ -11,9 +11,9 @@
       </ul>
 
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="username">Current password</label>
+        <label class="col-sm-2 control-label" for="current_password">Current password</label>
         <div class="col-sm-10">
-          {{ Form::password('current_password', null, array('class'=>'form-control', 'placeholder'=>'Current password')) }}
+          {{ Form::password('current_password', array('class'=>'form-control', 'placeholder'=>'Current password')) }}
         </div>
       </div>
       <div class="form-group">
