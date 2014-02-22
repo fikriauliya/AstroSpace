@@ -45,10 +45,10 @@
           <ul class="nav navbar-nav">
     			 	@if(Auth::check())
     				  <li>{{ HTML::link('spaces/'.Auth::user()->id, 'Home') }}</li>
-              <li>{{ HTML::link('messages/', 'Messages') }}</a></li>
+              <li>{{ HTML::link('messages/', 'Messages') }}</li>
     				@endif
-            <li>{{ HTML::link('users', 'Memberlist') }}</a></li>
-				<li>{{ HTML::link('users/search', 'User Search')}}</a></li>
+            <li>{{ HTML::link('users', 'Memberlist') }}</li>
+				<li>{{ HTML::link('users/search', 'User Search')}}</li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
