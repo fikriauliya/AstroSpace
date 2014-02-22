@@ -9,6 +9,8 @@ class StatisticController extends BaseController {
 
 
 	public function getShow(){
-		return View::make('statistics.show');
+		$user = Auth::user();
+		$username = $user->username;
+		return View::make('statistics.show')->with('user',$user);
 	}
 }
