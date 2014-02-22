@@ -11,6 +11,6 @@ class Comment extends Eloquent {
   }
 
   public function blogPost() {
-    return $this->belongsTo('BlogPost', 'id', 'blog_post_id');
+    return $this->belongsTo('BlogPost', 'blog_post_id', 'id');
   }
 }
