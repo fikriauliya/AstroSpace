@@ -26,6 +26,12 @@ $(function(){
       placement: "top",
    });
 
+   $("#asst_space_manageAds").popover({
+      trigger:"hover focus click",
+      content: "Managing and create new advertisment",
+      placement: "auto top",
+   });
+
    $("#asst_editprofile").popover({
       trigger:"hover focus click",
       content: "Change your profile",

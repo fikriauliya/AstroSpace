@@ -16,7 +16,7 @@
 		$pattern = '/[^-A-Za-z0-9+&@#\/%?=~_|!:,.;\(\)]/'; 
 		$safe_url = preg_replace($pattern, '', $url);
 	?>
-	<iframe width="600" height="200" scrolling="no" frameborder="0" style="overflow: hidden" src= "{{ $safe_url }}"></iframe>
+	<iframe sandbox="allow-scripts" width="600" height="200" scrolling="no" frameborder="0" style="overflow: hidden" src= "{{ $safe_url }}"></iframe>
 
 </body>
 </html>
