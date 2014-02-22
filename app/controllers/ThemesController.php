@@ -33,7 +33,7 @@ class ThemesController extends BaseController {
 			}
 		} else {
 			//warning, attacker!
-			return Redirect::to('/')->with('message', 'Invalid theme selected');
+			return Redirect::to('/')->with('warning', 'Invalid theme selected');
 		}
 	}
 }

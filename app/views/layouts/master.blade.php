@@ -79,6 +79,12 @@
           <p class="alert alert-info">{{ Session::get('message') }}</p>
         </div>
       @endif
+      @if(Session::has('warning'))
+        <div class="row">
+          <p class="alert alert-danger">{{ Session::get('warning') }}</p>
+        </div>
+      @endif
+
       @yield('content')
     </div><!-- /.container -->
 	

@@ -28,7 +28,7 @@ class FriendsController extends BaseController {
 
 		//redirect to home if error
 		if ($validator->fails()) {
-			return Redirect::to('spaces/'.$user_id)->with('message', 'Error add friend');
+			return Redirect::to('spaces/'.$user_id)->with('warning', 'Error add friend');
 		} 
 		else {
 			//Get the input
@@ -36,7 +36,7 @@ class FriendsController extends BaseController {
 			
 			//Check if id exist
 			if (!User::find($friend_id)->exists()){
-				Session::flash('message', 'Cannot befriend, user is not exist!');
+				Session::flash('warning', 'Cannot befriend, user is not exist!');
 				Redirect::to($current_url);
 			}
 
@@ -76,7 +76,7 @@ class FriendsController extends BaseController {
 
 		//redirect to home if error
 		if ($validator->fails()) {
-			return Redirect::to($current_url)->with('message', 'Error add friend');
+			return Redirect::to($current_url)->with('warning', 'Error add friend');
 		} 
 		else {
 			//get the input friend_id
@@ -84,7 +84,7 @@ class FriendsController extends BaseController {
 			
 			//Check if friend request really exist
 			if (!User::find($user_id)->friendRequests()->where('friend_id','=',$friend_id)->exists()){
-				Session::flash('message','Friend request not exist');
+				Session::flash('warning','Friend request not exist');
 				Redirect::to($current_url);
 			}
 
@@ -125,7 +125,7 @@ class FriendsController extends BaseController {
 
 		//redirect to home if error
 		if ($validator->fails()) {
-			return Redirect::to($current_url)->with('message', 'Error add friend');
+			return Redirect::to($current_url)->with('warning', 'Error add friend');
 		} 
 		else {
 			//get the entry friend_id
@@ -133,7 +133,7 @@ class FriendsController extends BaseController {
 
 			//Check if really are friend
 			if (!$user->friends()->where('friend_id','=',$friend_id)->exists()){
-				Session::flash('message', 'Cannot remove non friend');
+				Session::flash('warning', 'Cannot remove non friend');
 				Redirect::to($current_url);
 			}
 

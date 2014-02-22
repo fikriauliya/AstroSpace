@@ -42,7 +42,7 @@ class ProfilesController extends BaseController {
     			Input::file('photo')->move($destination_path, $file_name);
 	    		$user->photo = $file_name;
 	    	} else {
-	    		return Redirect::to('/')->with('message', "The uploaded image doesn't match the requirement");
+	    		return Redirect::to('profiles/'.$id.'/edit')->with('warning', "The uploaded image doesn't match the requirement");
 	    	}	
     	}
 	    $user->save();

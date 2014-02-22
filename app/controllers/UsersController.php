@@ -17,7 +17,7 @@ class UsersController extends BaseController {
 		return View::make('users.search')->with('user_result',$searchresult);
 		}
 		else
-			return View::make('users.search') -> with('message', 'No such user found');
+			return View::make('users.search') -> with('warning', 'No such user found');
 	}
 
 	public function getRegister() {
@@ -52,7 +52,7 @@ class UsersController extends BaseController {
 
 	    return Redirect::to('users/login')->with('message', 'Thanks for registering! Please activate your account by clicking the verification code sent to your email');
     } else {
-    	return Redirect::to('users/register')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+    	return Redirect::to('users/register')->with('warning', 'The following errors occurred')->withErrors($validator)->withInput();
     }
 	}
 
@@ -69,7 +69,7 @@ class UsersController extends BaseController {
 				->with('message', 'You are now logged in!');
 		} else {
 	    return Redirect::to('users/login')
-	      ->with('message', 'Your username/password combination was incorrect. Or your account hasn not been activated, please check your email')
+	      ->with('warning', 'Your username/password combination was incorrect. Or your account hasn not been activated, please check your email')
 	      ->withInput();
 		}
 	}
@@ -108,7 +108,7 @@ class UsersController extends BaseController {
 	    return Redirect::to('users/login')->with('message', 'Your account has been activated. Please log in below');
 		}			
 		else {
-		  return Redirect::to('users/login')->with('message', 'Your verification code is invalid');
+		  return Redirect::to('users/login')->with('warning', 'Your verification code is invalid');
 		}
 	}
 
@@ -135,10 +135,10 @@ class UsersController extends BaseController {
 
 				return Redirect::to('/')->with('message', 'Your password has been updated');		
 			} else {
-	    	return Redirect::to('users/changepassword')->with('message', "The existing password doesn't match");
+	    	return Redirect::to('users/changepassword')->with('warning', "The existing password doesn't match");
 			}
 		} else {
-    	return Redirect::to('users/changepassword')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
+    	return Redirect::to('users/changepassword')->with('warning', 'The following errors occurred')->withErrors($validator)->withInput();
 		}
 	}
 }
