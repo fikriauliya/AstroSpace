@@ -9,9 +9,9 @@
 
     <!-- Bootstrap -->
     @if (Auth::check())
-      {{ HTML::style('css/bootstrap'.Auth::user()->theme.'.min.css') }}
+      {{ HTML::style('css/bootstrap-'.Auth::user()->theme.'.min.css') }}
     @else
-      {{ HTML::style('css/bootstrap.min.css') }}
+      {{ HTML::style('css/bootstrap-default.min.css') }}
     @endif
     {{ HTML::style('css/starter-template.css') }}
 
@@ -43,9 +43,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-			 	@if(Auth::check())
-				<li>{{ HTML::link('spaces/'.Auth::user()->id, 'Home') }}</li>
-				@endif
+    			 	@if(Auth::check())
+    				  <li>{{ HTML::link('spaces/'.Auth::user()->id, 'Home') }}</li>
+              <li>{{ HTML::link('messages/', 'Messages') }}</a></li>
+    				@endif
             <li>{{ HTML::link('users', 'Memberlist') }}</a></li>
 				<li>{{ HTML::link('users/search', 'User Search')}}</a></li>
           </ul>
@@ -57,6 +58,9 @@
                 <ul class="dropdown-menu">
                   <li>{{ HTML::link('themes/'.(Auth::user()->id).'/edit', "Edit themes") }}</li>
                   <li>{{ HTML::link('users/changepassword', 'Change password') }}</li>
+                @if (Auth::user()->role == 'admin')
+						<li>{{ HTML::link('admin/', 'Admin area') }} </li>
+					 @endif
                 </ul>
               </li>
               <li>{{ HTML::link('users/logout', 'Log out') }}</li>

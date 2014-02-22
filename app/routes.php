@@ -32,6 +32,9 @@ Route::controller('password', 'RemindersController');
 //Ads
 Route::controller('ads','AdsController');
 
+//Admin
+Route::controller('admin','AdminController');
+
 
 // Profiles
 Route::resource('profiles', 'ProfilesController', array('only' => array('show', 'edit', 'update')));
@@ -41,5 +44,4 @@ Route::resource('themes', 'ThemesController', array('only' => array('edit', 'upd
 Route::resource('blogposts', 'BlogPostsController', array('only' => array('show', 'create', 'store')));
 Route::resource('comments', 'CommentsController', array('only' => array('store')));
 
-//Search
-Route::get('finduser', 'SpacesController@finduser');
+Route::resource('messages', 'MessagesController', array('only' => array('show', 'create', 'store', 'index')));

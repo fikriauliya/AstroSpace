@@ -44,7 +44,7 @@
   </div>
 
 	<div id="review_container" style="margin:20px">
-	<button id="review_ads_button">Review add</button>
+	<button id="review_ads_button" class="btn btn-info">Review add</button>
 		<div class="container" style="width:600px; height:200px">
 			<iframe width="600" height="200" scrolling="no" frameborder="0" style="overflow:hidden;" src="{{ URL::to('ads/review').'?url=' }}" id="review_ads_iframe"></iframe>
 		

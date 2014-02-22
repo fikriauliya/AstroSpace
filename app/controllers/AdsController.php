@@ -10,7 +10,7 @@ class AdsController extends BaseController {
 		//Get random ads
 		$ad = Ad::orderBy(DB::raw('RAND()'))->first();
 		if (count($ad)==0){
-			return "No ads";
+			return View::make('ads.empty_ads');
 		}
 
 

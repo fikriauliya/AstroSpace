@@ -15,11 +15,10 @@
 
 @section('content')
   <div class="row">
-    <h3>New blog post</h2>
+    <h3>New blog post</h3>
     {{ Form::open(array('url'=>'blogposts', 'class'=>'form-horizontal', 'role'=>'form')) }}
       <div class="col-sm-9">
-
-        <ul>
+        <ul style="color:red">
           @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
           @endforeach
@@ -51,7 +50,7 @@
       </div>
       <div class="col-sm-3">
         <div class="form-group">
-          <h4>Privacy settings</b>
+          <h4>Privacy settings</h4>
         </div>
         <div class="form-group">
           <label for="privacy">Visibility</label>

@@ -21,7 +21,7 @@
     </div>
     <div class="col-sm-4">
       {{ Form::open(array('url'=>'comments', 'class'=>'form-horizontal', 'role'=>'form')) }}
-        <ul>
+         <ul style="color:red">
           @foreach($errors->all() as $error)
             <li>{{ $error }}</li>
           @endforeach

@@ -7,15 +7,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public static $rules = array(
     'username'=>'required|alpha|min:2',
     'email'=>'required|email|unique:users',
-    'password'=>'required|alpha_num|between:6,12|confirmed',
-    'password_confirmation'=>'required|alpha_num|between:6,12'
+    'password'=>'required|between:6,40|confirmed',
+    'password_confirmation'=>'required|between:6,40'
     );
 
 	public static $change_password_rules = array(
-    'current_password'=>'required|alpha_num|between:6,12',
-    'password'=>'required|alpha_num|between:6,12|confirmed',
-    'password_confirmation'=>'required|alpha_num|between:6,12'
+    'current_password'=>'required|between:6,40',
+    'password'=>'required|between:6,40|confirmed',
+    'password_confirmation'=>'required|between:6,40'
    	);		
+
+	public static $theme_rules = array(
+		'theme' => 'in:amelia,cerulean,cosmo,cupid,default|required'
+		);
 	/**
 	 * The database table used by the model.
 	 *
@@ -57,6 +61,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function ads() {
 		return $this->hasMany('Ad', 'owner_id', 'id');
+	}
+
+	public function comments() {
+		return $this->hasMany('Comment', 'posted_by_id', 'id');
+	}
+	
+	//comments that appear in the blogpost owned by the user
+	public function comments2(){
+		return $this->hasManyThrough('Comment', 'BlogPost', 'posted_by_id', 'blog_post_id');
 	}
 
 	/**
