@@ -7,14 +7,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public static $rules = array(
     'username'=>'required|alpha|min:2',
     'email'=>'required|email|unique:users',
-    'password'=>'required|between:6,12|confirmed',
-    'password_confirmation'=>'required|between:6,12'
+    'password'=>'required|between:6,40|confirmed',
+    'password_confirmation'=>'required|between:6,40'
     );
 
 	public static $change_password_rules = array(
-    'current_password'=>'required|alpha_num|between:6,12',
-    'password'=>'required|between:6,12|confirmed',
-    'password_confirmation'=>'required|between:6,12'
+    'current_password'=>'required|between:6,40',
+    'password'=>'required|between:6,40|confirmed',
+    'password_confirmation'=>'required|between:6,40'
    	);		
 
 	public static $theme_rules = array(
