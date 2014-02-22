@@ -2,7 +2,7 @@
 @section('content')
 	<div class="row">
     {{ Form::model($user,
-    	array('route'=> array('profiles.update', $user->id), 'method'=> 'PUT', 
+    	array('route'=> array('profiles.update', $user->id), 'files'=>true, 'method'=> 'PUT', 
     	'class'=>'form-horizontal', 'role'=>'form')) }}
       <h3>Edit profile</h2>
 
@@ -40,6 +40,12 @@
         <label class="col-sm-2 control-label" for="icq">ICQ</label>
         <div class="col-sm-10">
           {{ Form::text('icq', null, array('class'=>'form-control', 'placeholder'=>'ICQ')) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="photo">Photo</label>
+        <div class="col-sm-10">
+          {{ Form::file('photo', array('class'=>'form-control', 'placeholder'=>'Photo')) }}
         </div>
       </div>
       <div class="form-group">

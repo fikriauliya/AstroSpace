@@ -31,6 +31,14 @@ class ProfilesController extends BaseController {
 	    $user->msn = Input::get('msn');
 	    $user->irc = Input::get('irc');
 	    $user->icq = Input::get('icq');
+
+    	if (Input::hasFile('photo')) {
+    		$file = Input::file('photo');
+    		$destination_path = public_path().'/photos/';
+    		$file_name = $user->id.'.'.$file->getClientOriginalExtension();
+    		Input::file('photo')->move($destination_path, $file_name);
+	    	$user->photo = $file_name;
+    	}
 	    $user->save();
 		 if (Auth::user()->role == 'admin') {
 			return Redirect::to('admin')->with('message','Succesfully update the profile of '.$user->username );

@@ -18,16 +18,22 @@ class ThemesController extends BaseController {
 	}
 
 	public function update($id) {
-		// TODO: except password & email
-		$user = User::find($id);
-		if (Auth::user()->id == $user->id) {
-			$user->theme = Input::get('theme');
-	    $user->save();
+    $validator = Validator::make(Input::all(), User::$theme_rules);
+	  if ($validator->passes()) {
+			$user = User::find($id);
+			if (Auth::user()->id == $user->id) {
 
-			return Redirect::to('spaces/'.$id)->with('message', 'Profile updated');
+				$user->theme = Input::get('theme');
+		    $user->save();
+
+				return Redirect::to('spaces/'.$id)->with('message', 'Profile updated');
+			} else {
+				//warning, attacker!
+	  	  return Redirect::to('/');
+			}
 		} else {
 			//warning, attacker!
-  	  return Redirect::to('/');
+			return Redirect::to('/')->with('message', 'Invalid theme selected');
 		}
 	}
 }

@@ -10,6 +10,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     'password'=>'required|alpha_num|between:6,12|confirmed',
     'password_confirmation'=>'required|alpha_num|between:6,12'
     );
+
+	public static $change_password_rules = array(
+    'current_password'=>'required|alpha_num|between:6,12',
+    'password'=>'required|alpha_num|between:6,12|confirmed',
+    'password_confirmation'=>'required|alpha_num|between:6,12'
+   	);		
+
+	public static $theme_rules = array(
+		'theme' => 'in:amelia,cerulean,cosmo,cupid,default|required'
+		);
 	/**
 	 * The database table used by the model.
 	 *

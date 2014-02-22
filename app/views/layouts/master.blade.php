@@ -9,9 +9,9 @@
 
     <!-- Bootstrap -->
     @if (Auth::check())
-      {{ HTML::style('css/bootstrap'.Auth::user()->theme.'.min.css') }}
+      {{ HTML::style('css/bootstrap-'.Auth::user()->theme.'.min.css') }}
     @else
-      {{ HTML::style('css/bootstrap.min.css') }}
+      {{ HTML::style('css/bootstrap-default.min.css') }}
     @endif
     {{ HTML::style('css/starter-template.css') }}
 
@@ -55,10 +55,11 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>{{ HTML::link('themes/'.(Auth::user()->id).'/edit', "Edit themes") }}</li>
+                  <li>{{ HTML::link('users/changepassword', 'Change password') }}</li>
                 @if (Auth::user()->role == 'admin')
 						<li>{{ HTML::link('admin/', 'Admin area') }} </li>
 					 @endif
-					 </ul>
+                </ul>
               </li>
               <li>{{ HTML::link('users/logout', 'Log out') }}</li>
             @else
