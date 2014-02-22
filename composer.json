@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-		"cboden/Ratchet"	 : "0.3.*"
+		"cboden/Ratchet"	 : "0.3.*",
+		"thujohn/analytics": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
@@ -33,5 +34,6 @@
 	"config": {
 		"preferred-install": "dist"
 	},
-	"minimum-stability": "stable"
+	"minimum-stability": "stable",
+	"minimum-stability": "dev"
 }
