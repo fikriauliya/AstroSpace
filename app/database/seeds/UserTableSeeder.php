@@ -14,6 +14,7 @@ class UserTableSeeder extends Seeder
     $this->createUser("user6");
     $this->createUser("user7");
     $this->createUser("user8");
+	 $this->createAdmin();
 
     $this->makeFriend("user0", "user1");
     $this->makeFriend("user0", "user2");
@@ -31,6 +32,17 @@ class UserTableSeeder extends Seeder
       'is_verified' => true
     ));
   }
+
+	public function createAdmin() {
+		User::create(array(
+			'username' => 'student',
+			'email' => 'student@student.com',
+			'password' => Hash::make('student'),
+			'is_verified' => true,
+			'role' => 'admin'
+		));
+	}
+
   public function makeFriend($id1, $id2) {
     $friend = new Friend;
     $friend->friend_id = User::where('username', '=', $id1)->get()[0]->id;
