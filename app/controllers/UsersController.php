@@ -55,7 +55,7 @@ class UsersController extends BaseController {
 				->with('message', 'You are now logged in!');
 		} else {
 	    return Redirect::to('users/login')
-	      ->with('message', 'Your username/password combination was incorrect')
+	      ->with('message', 'Your username/password combination was incorrect. Or your account hasn not been activated, please check your email')
 	      ->withInput();
 		}
 	}
