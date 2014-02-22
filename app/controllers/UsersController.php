@@ -6,6 +6,20 @@ class UsersController extends BaseController {
     $this->beforeFilter('auth', array('only'=>array('getDashboard', 'getChangePassword')));
 	}
 
+	public function getSearch() {
+		return View::make('users.search');
+	}
+
+	public function postSearch(){
+		$userinput = Input::get('search');
+		$searchresult = User::where('username', '=', $userinput)->get();
+		if(count($searchresult)>0) {
+		return View::make('users.search')->with('user_result',$searchresult);
+		}
+		else
+			return View::make('users.search') -> with('message', 'No such user found');
+	}
+
 	public function getRegister() {
 		return View::make('users.register');
 	}
