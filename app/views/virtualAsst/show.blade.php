@@ -60,6 +60,20 @@ $(function(){
 		placement: "bottom",
 	});
 
+	$("#asst_changepassword").popover({
+		trigger:"hover focus",
+		content: "Change your password",
+		placement: "auto top",
+	});
+	
+	$("#asst_webstatistic").popover({
+		trigger:"hover focus",
+		content: "See various statistic about your space",
+		placement: "auto",
+	});
+
+
+
 	$("#webRTC_videocall").hide();
 	$("#asst_finish").hide();
 
@@ -139,6 +153,7 @@ $(function(){
                 <a href="#" class="dropdown-toggle" id='asst_settings' data-toggle="dropdown">Settings <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>{{ HTML::link('#', "Edit themes", array('id'=>'asst_editthemes')) }}</li>
+						<li>{{ HTML::link('#', 'Show web statistic', array('id' => 'asst_webstatistic')) }} </li>
 						<li>{{ HTML::link('#', 'Change password', array('id' => 'asst_changepassword')) }}</li>
 
                 </ul>

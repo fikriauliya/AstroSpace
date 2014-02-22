@@ -14,6 +14,8 @@
 <script>
 	$(function(){
 		console.log("DOM CONTENT LOADED");
+		
+		$("#open-session").hide();
 		$("a.invite").click( function() {
 			var el = this;
 			var user_id = el.dataset.userid;
@@ -41,8 +43,9 @@
 
 <body>
 @section('content')
-
-<button id="open-session" class="btn btn-success"> Start video chat! </button>
+<button id="open-session" class="btn btn-success"> Start a new video call! </button>
+<h5>Note: Only one person can start a video call, the others need to wait for connection</h5>
+<h5>If other user has start video call you want to join, please wait a while to be connected</h5>
 <div id="videoContainer">
 <table class="table table-bordered" style="border-left: 1px solid black; width:100%;">
 	<tbody>
@@ -95,7 +98,7 @@ connection.session = {
 	video: true
 };
 
-connection.onopen = function(e) {
+connection.onOpen = function(e) {
 	var openButton = document.querySelector("button#open-session");
 	openButton.disabled = true;
 }
@@ -140,9 +143,15 @@ document.querySelector("button#open-session").onclick = function() {
 	this.disabled = true;
 };
 
+$(function(){
+		@if( $button_delay >= 15)
+		setTimeout(function(){ $("#open-session").show();}, {{ $button_delay }} );
+		@else
+		connection.open();
+		@endif
+});
 
 connection.connect();
-
 
 </script>
 @stop

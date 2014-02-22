@@ -19,9 +19,13 @@ class WebRTCController extends BaseController {
 			Session::flash('warning', 'You do not have any active video chat room');
 			return Redirect::to('spaces/'.$user->id);
 		}
-
+		if (Session::has('button_delay')) $button_delay = Session::get('button_delay');
+		else $button_delay = 3500;
+		Session::forget('button_delay');
+		
 		return View::make('webRTC.videoCall')
-			->with('user',$user);
+			->with('user',$user)
+			->with('button_delay',$button_delay);
 	}
 
 	public function createRoom(){
@@ -46,7 +50,9 @@ class WebRTCController extends BaseController {
 		$video_room->save();
 
 		Session::flash('message', 'Successfully create a video chat room');
-		return Redirect::to('webrtc/');
+		//return Redirect::to('webrtc/');
+		Session::put('button_delay', 10);
+		return Redirect::action('WebRTCController@goToRoom');
 	}
 
 	public function inviteToRoom(){
@@ -117,7 +123,9 @@ class WebRTCController extends BaseController {
 
 		//refresh browser and give message
 		Session::flash('message', 'Successfully approve room');
-		return Redirect::to('webrtc/');
+		//return Redirect::to('webrtc/');
+		Session::put('button_delay', 7500);
+		return Redirect::action('WebRTCController@goToRoom');
 	}
 
 	public function exitRoom(){
