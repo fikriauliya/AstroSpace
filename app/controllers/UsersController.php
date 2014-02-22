@@ -3,7 +3,7 @@
 class UsersController extends BaseController {
 	public function __construct() {
     $this->beforeFilter('csrf', array('on'=>'post'));
-    $this->beforeFilter('auth', array('only'=>array('getDashboard')));
+    $this->beforeFilter('auth', array('only'=>array('getDashboard', 'getChangePassword')));
 	}
 
 	public function getRegister() {
@@ -95,6 +95,29 @@ class UsersController extends BaseController {
 		}			
 		else {
 		  return Redirect::to('users/login')->with('message', 'Your verification code is invalid');
+		}
+	}
+
+	public function getChangepassword() {
+		return View::make('users.changepassword');
+	}
+
+	public function postChangepassword() {
+    $validator = Validator::make(Input::all(), User::$change_password_rules);
+ 
+    if ($validator->passes()) {
+			$user = Auth::user();
+			$current_password = Input::get('current_password');
+			if (Hash::check($current_password, $user->password)) {
+				$user->password = Hash::make(Input::get('password'));
+				$user->save();
+
+				return Redirect::to('/')->with('message', 'Your password has been updated');		
+			} else {
+	    	return Redirect::to('users/changepassword')->with('message', "The existing password doesn't match");
+			}
+		} else {
+    	return Redirect::to('users/changepassword')->with('message', 'The following errors occurred')->withErrors($validator)->withInput();
 		}
 	}
 }
