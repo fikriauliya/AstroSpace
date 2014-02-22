@@ -3,18 +3,18 @@
 @section('content')
 <div class="row">
 	<h3> Comment by {{{ $user->username }}} </h3>
-	<table class="table table-bordered table-striped">
+	<table class="table table-bordered table-condensed table-striped">
 		<thead>
 			<tr>
-				<td>Blog_id</td>
-				<td>Comment</td>	
-				<td></td>
+				<th>Blog post title</th>
+				<th>Comment</th>	
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 		@foreach($user->comments as $key => $value)
 			<tr>
-				<td>{{{ $value->blog_post_id }}}</td>
+				<td>{{{ $value->blogPost->title }}}</td>
 				<td>{{{ $value->content }}}</td>
 				<td>
 					{{ Form::open(array('url' => 'admin/delete-comment')) }}

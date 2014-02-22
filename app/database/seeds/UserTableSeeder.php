@@ -5,6 +5,8 @@ class UserTableSeeder extends Seeder
 	public function run()
 	{
 		DB::table('users')->delete();
+    DB::table('friends')->delete();
+    
 		$this->createUser("user0");
     $this->createUser("user1");
     $this->createUser("user2");
@@ -22,6 +24,9 @@ class UserTableSeeder extends Seeder
     $this->makeFriend("user0", "user4");
 
     $this->makeFriend("user1", "user5");
+
+    $this->makeAdmin("user0");
+    $this->makeAdmin("user1");
 	}
 
   public function createUser($id) {
@@ -53,5 +58,11 @@ class UserTableSeeder extends Seeder
     $friend->friend_id = User::where('username', '=', $id2)->get()[0]->id;
     $friend->owner_id = User::where('username', '=', $id1)->get()[0]->id;
     $friend->save();
+  }
+
+  public function makeAdmin($id) {
+    $user = User::where('username', '=', $id)->get()[0];
+    $user->role = 'admin';
+    $user->save();
   }
 }
