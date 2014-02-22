@@ -58,6 +58,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function friendRequests() {
 		return $this->hasMany('FriendRequest', 'owner_id', 'id');
 	}
+	
+	public function friendRequests2() {
+		return $this->belongsToMany('User', 'friendrequests', 'owner_id', 'friend_id');
+	}
 
 	public function ads() {
 		return $this->hasMany('Ad', 'owner_id', 'id');
@@ -101,4 +105,29 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->email;
 	}
+
+	/**
+	 * Deleting the user and data related to user
+	 *
+	 */
+	 public function delete()
+	 {
+		 Ad::where('owner_id','=',$this->id)->delete();
+		 Comment::where('posted_by_id','=',$this->id)->delete();
+		 $blogposts = $this->blogposts;
+		 foreach($blogposts as $blogpost){
+			 Comment::where('blog_post_id', '=', $blogpost->id)->delete();
+		 }
+		 BlogPost::where('posted_by_id','=', $this->id)->delete();
+		 Friend::where('friend_id','=',$this->id)->delete();
+		 Friend::where('owner_id','=',$this->id)->delete();
+		 FriendRequest::where('friend_id', '=', $this->id)->delete();
+		 FriendRequest::where('owner_id', '=', $this->id)->delete();
+		 VideoCallRequest::where('host_id', '=', $this->id)->delete();
+		 VideoCallRequest::where('owner_id', '=', $this->id)->delete();
+		 VideoRoom::where('owner_id', '=', $this->id)->delete();
+
+		 return parent::delete();
+	 }
+
 }
