@@ -1,6 +1,14 @@
 <?php
 
 class SpacesController extends BaseController {
+
+	 //Anyone can find anyone in the website
+	public function finduser($id){
+		$user = User::find($id);
+		Return View::make('spaces.shows') -> with('user', user);
+	}
+	
+	
 	public function show($id) {
 		$auth_user = Auth::user();
 		$user = User::find($id);

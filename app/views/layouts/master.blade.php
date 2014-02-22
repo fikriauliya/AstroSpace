@@ -47,6 +47,7 @@
 				<li>{{ HTML::link('spaces/'.Auth::user()->id, 'Home') }}</li>
 				@endif
             <li>{{ HTML::link('users', 'Memberlist') }}</a></li>
+				<li>{{ HTML::link('users/search', 'User Search')}}</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
