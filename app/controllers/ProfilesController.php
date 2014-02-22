@@ -25,7 +25,7 @@ class ProfilesController extends BaseController {
 	public function update($id) {
 		// TODO: except password & email
 		$user = User::find($id);
-		if (Auth::user()->id == $user->id) {
+		if (Auth::user()->id == $user->id || Auth::user()->role == 'admin') {
 			$user->username = Input::get('username');
 			$user->aim = Input::get('aim');
 	    $user->msn = Input::get('msn');
@@ -40,6 +40,9 @@ class ProfilesController extends BaseController {
 	    	$user->photo = $file_name;
     	}
 	    $user->save();
+		 if (Auth::user()->role == 'admin') {
+			return Redirect::to('admin')->with('message','Succesfully update the profile of '.$user->username );
+		 }
 
 			return Redirect::to('spaces/'.$id)->with('message', 'Profile updated');
 		} else {

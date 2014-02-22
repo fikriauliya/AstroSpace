@@ -57,6 +57,9 @@
                 <ul class="dropdown-menu">
                   <li>{{ HTML::link('themes/'.(Auth::user()->id).'/edit', "Edit themes") }}</li>
                   <li>{{ HTML::link('users/changepassword', 'Change password') }}</li>
+                @if (Auth::user()->role == 'admin')
+						<li>{{ HTML::link('admin/', 'Admin area') }} </li>
+					 @endif
                 </ul>
               </li>
               <li>{{ HTML::link('users/logout', 'Log out') }}</li>

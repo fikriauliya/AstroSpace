@@ -32,6 +32,9 @@ Route::controller('password', 'RemindersController');
 //Ads
 Route::controller('ads','AdsController');
 
+//Admin
+Route::controller('admin','AdminController');
+
 
 // Profiles
 Route::resource('profiles', 'ProfilesController', array('only' => array('show', 'edit', 'update')));
