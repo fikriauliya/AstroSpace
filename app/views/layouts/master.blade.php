@@ -43,9 +43,10 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-			 	@if(Auth::check())
-				<li>{{ HTML::link('spaces/'.Auth::user()->id, 'Home') }}</li>
-				@endif
+    			 	@if(Auth::check())
+    				  <li>{{ HTML::link('spaces/'.Auth::user()->id, 'Home') }}</li>
+              <li>{{ HTML::link('messages/', 'Messages') }}</a></li>
+    				@endif
             <li>{{ HTML::link('users', 'Memberlist') }}</a></li>
           </ul>
 

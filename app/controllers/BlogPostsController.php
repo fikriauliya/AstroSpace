@@ -38,6 +38,8 @@ class BlogPostsController extends BaseController {
 		} else {
 			$blog_post->is_private = false;
 		}
+
+		//TODO: check whether they are really friend
 		if (Input::get('visible_tos') != NULL) {
 			$blog_post->visible_tos = join(',', Input::get('visible_tos'));
 		}

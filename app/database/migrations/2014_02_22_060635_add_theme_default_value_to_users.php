@@ -14,7 +14,9 @@ class AddThemeDefaultValueToUsers extends Migration {
 	{
 		Schema::table('users', function($table)
 		{
+			if (Schema::hasColumn('users', 'theme')) {
 		    $table->dropColumn('theme');
+			}
 		});
 		Schema::table('users', function($table)
 		{
@@ -29,10 +31,6 @@ class AddThemeDefaultValueToUsers extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('users', function($table)
-		{
-		    $table->dropColumn('theme');
-		});
 	}
 
 }
