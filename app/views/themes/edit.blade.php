@@ -1,4 +1,14 @@
 @extends('layouts.master')
+@section('header')
+  <script type="text/javascript">
+    var base_url = "{{$base_url}}";
+    $(function() {
+      $('#theme').change(function() {
+        $('#theme_css').attr('href', base_url + '/css/bootstrap-' + $(this).val() + '.min.css')
+      });
+    });
+  </script>
+@stop
 @section('content')
 	<div class="row">
     {{ Form::model($user,
@@ -16,7 +26,7 @@
         <label class="col-sm-2 control-label" for="username">Theme</label>
         <div class="col-sm-10">
           {{ Form::select('theme', array('amelia'=>'Amelia', 'cerulean'=>'Cerulean', 'cosmo'=>'Cosmo', 
-            'cupid'=>'Cupid', 'default' =>'Default'), '', array('class'=>'form-control', 'placeholder'=>'Theme')) }}
+            'cupid'=>'Cupid', 'default' =>'Default'), $user->theme, array('id'=>'theme', 'class'=>'form-control', 'placeholder'=>'Theme')) }}
         </div>
       </div>
       <div class="form-group">

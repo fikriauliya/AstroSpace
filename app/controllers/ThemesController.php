@@ -10,7 +10,8 @@ class ThemesController extends BaseController {
 	public function edit($id) {
 		$user = User::find($id);
 		if (Auth::user()->id == $user->id) {
-			return View::make('themes.edit')->with('user', $user);
+			$base_url = URL::to("/");
+			return View::make('themes.edit')->with('user', $user)->with('base_url', $base_url);
 		} else {
 			//warning, attacker!
  	    return Redirect::to('/');
