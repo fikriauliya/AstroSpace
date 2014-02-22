@@ -8,7 +8,6 @@ class SpacesController extends BaseController {
 		Return View::make('spaces.shows') -> with('user', user);
 	}
 	
-	
 	public function show($id) {
 		$auth_user = Auth::user();
 		$user = User::find($id);

@@ -14,7 +14,7 @@ class UsersController extends BaseController {
 		$userinput = Input::get('search');
 		$searchresult = User::where('username', '=', $userinput)->get();
 		if(count($searchresult)>0) {
-		return View::make('users.search')->with('user_result',$searchresult;
+		return View::make('users.search')->with('user_result',$searchresult);
 		}
 		else
 			return View::make('users.search') -> with('message', 'No such user found');
