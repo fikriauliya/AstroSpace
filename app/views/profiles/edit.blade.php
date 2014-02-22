@@ -43,7 +43,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2 control-label" for="photo">Photo</label>
+        <label class="col-sm-2 control-label" for="photo">Photo (< 1Mb)</label>
         <div class="col-sm-10">
           {{ Form::file('photo', array('class'=>'form-control', 'placeholder'=>'Photo')) }}
         </div>

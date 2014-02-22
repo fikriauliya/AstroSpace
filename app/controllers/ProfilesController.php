@@ -36,13 +36,19 @@ class ProfilesController extends BaseController {
     		$file = Input::file('photo');
     		$destination_path = public_path().'/photos/';
     		$file_name = $user->id.'.'.$file->getClientOriginalExtension();
-    		Input::file('photo')->move($destination_path, $file_name);
-	    	$user->photo = $file_name;
+
+    		$allowed_mimes = array('image/png', 'image/gif', 'image/jpeg', 'image/pjpeg', 'image/svg+xml');
+    		if ($file->getSize() < 1000000 && in_array($file->getMimeType(), $allowed_mimes)) {
+    			Input::file('photo')->move($destination_path, $file_name);
+	    		$user->photo = $file_name;
+	    	} else {
+	    		return Redirect::to('/')->with('message', "The uploaded image doesn't match the requirement");
+	    	}	
     	}
 	    $user->save();
-		 if (Auth::user()->role == 'admin') {
-			return Redirect::to('admin')->with('message','Succesfully update the profile of '.$user->username );
-		 }
+			if (Auth::user()->role == 'admin') {
+				return Redirect::to('admin')->with('message','Succesfully update the profile of '.$user->username );
+			}
 
 			return Redirect::to('spaces/'.$id)->with('message', 'Profile updated');
 		} else {
