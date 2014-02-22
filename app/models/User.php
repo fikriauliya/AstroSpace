@@ -8,8 +8,20 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     'username'=>'required|alpha_num|min:2',
     'email'=>'required|email|unique:users',
     'password'=>'required|between:6,40|confirmed',
-    'password_confirmation'=>'required|between:6,40'
+    'password_confirmation'=>'required|between:6,40',
+    'aim'=>'between:0,40',
+		'msn'=>'between:0,40',
+		'irc'=>'between:0,40',
+		'icq'=>'between:0,40',
     );
+
+	public static $profile_rules = array(
+		'username'=>'required|alpha_num|min:2',
+    'aim'=>'between:0,40',
+		'msn'=>'between:0,40',
+		'irc'=>'between:0,40',
+		'icq'=>'between:0,40',
+	);
 
 	public static $change_password_rules = array(
     'current_password'=>'required|between:6,40',
