@@ -16,7 +16,7 @@ class AdminController extends BaseController{
 
 	public function getEditSpace(){
 		$user = User::find( Input::get('user_id') );
-		return View::make('admin.editSpace')->with('user', $user);
+		return View::make('spaces.edit')->with('user', $user);
 
 	}
 
