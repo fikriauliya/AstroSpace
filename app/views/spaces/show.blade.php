@@ -17,7 +17,7 @@
 			  <li class="active" ><a href="#blog" data-toggle="tab">Blog</a></li>
 			  <li><a href="#profile" data-toggle="tab">Profile</a></li>
 			  @if (Auth::check() && Auth::user()->id == $user->id)
-			  <li><a href="#showFriend" data-toggle="tab">ShowFriend</a></li>
+			  <li><a href="#showFriend" data-toggle="tab">Show Friend</a></li>
 			  <li><a href="#showVideoCallInfo" data-toggle="tab">Video Call Info </a></li>
 			  <li><a href="#manageAds" data-toggle="tab">Manage Ads</a></li>
 			  @endif
