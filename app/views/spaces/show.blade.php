@@ -3,7 +3,7 @@
 @section('content')
 	<div class="row">
 		<div class="col-sm-2">
-			<img src="..." alt="..." style="width:100%; height: 200px" class="img-thumbnail"/>
+			<img src="{{$photo_path}}" alt="..." style="width:100%; height: 200px" class="img-thumbnail"/>
 			@if (Auth::check() && Auth::user()->id == $user->id)
 	  		{{ HTML::link("spaces/".$user->id."/edit", 'Edit my space', array('class' => 'btn btn-warning', 'style' => 'margin-top:20px')) }}
 	  	@endif

@@ -31,6 +31,14 @@ class ProfilesController extends BaseController {
 	    $user->msn = Input::get('msn');
 	    $user->irc = Input::get('irc');
 	    $user->icq = Input::get('icq');
+
+    	if (Input::hasFile('photo')) {
+    		$file = Input::file('photo');
+    		$destination_path = public_path().'/photos/';
+    		$file_name = $user->id.'.'.$file->getClientOriginalExtension();
+    		Input::file('photo')->move($destination_path, $file_name);
+	    	$user->photo = $file_name;
+    	}
 	    $user->save();
 
 			return Redirect::to('spaces/'.$id)->with('message', 'Profile updated');
