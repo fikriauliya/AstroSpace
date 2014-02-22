@@ -28,6 +28,7 @@ class UserTableSeeder extends Seeder
       'username' => $id,
       'email'    => $id."@email.com",
       'password' => Hash::make('passw0rd'),
+      'is_verified' => true
     ));
   }
   public function makeFriend($id1, $id2) {
