@@ -3,7 +3,7 @@
 class BlogPostsController extends BaseController {
 	public function __construct() {
     $this->beforeFilter('csrf', array('on'=>'post'));
-    $this->beforeFilter('auth', array('only'=>array('create', 'store')));
+    $this->beforeFilter('auth', array('only'=>array('create', 'store', 'show')));
 	}
 
 	public function show($id) {
