@@ -50,7 +50,7 @@
       </div>
       <div class="col-sm-3">
         <div class="form-group">
-          <h4>Privacy settings</b>
+          <h4>Privacy settings</h4>
         </div>
         <div class="form-group">
           <label for="privacy">Visibility</label>
