@@ -9,9 +9,9 @@
 
     <!-- Bootstrap -->
     @if (Auth::check())
-      {{ HTML::style('css/bootstrap'.Auth::user()->theme.'.min.css') }}
+      {{ HTML::style('css/bootstrap-'.Auth::user()->theme.'.min.css') }}
     @else
-      {{ HTML::style('css/bootstrap.min.css') }}
+      {{ HTML::style('css/bootstrap-default.min.css') }}
     @endif
     {{ HTML::style('css/starter-template.css') }}
 

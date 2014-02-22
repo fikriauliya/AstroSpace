@@ -15,8 +15,8 @@
       <div class="form-group">
         <label class="col-sm-2 control-label" for="username">Theme</label>
         <div class="col-sm-10">
-          {{ Form::select('theme', array('-amelia'=>'Amelia', '-cerulean'=>'Cerulean', '-cosmo'=>'Cosmo', 
-            '-cupid'=>'Cupid', '' =>'Default'), '', array('class'=>'form-control', 'placeholder'=>'Theme')) }}
+          {{ Form::select('theme', array('amelia'=>'Amelia', 'cerulean'=>'Cerulean', 'cosmo'=>'Cosmo', 
+            'cupid'=>'Cupid', 'default' =>'Default'), '', array('class'=>'form-control', 'placeholder'=>'Theme')) }}
         </div>
       </div>
       <div class="form-group">
