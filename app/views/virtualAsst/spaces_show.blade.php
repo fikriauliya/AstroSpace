@@ -26,6 +26,17 @@ $(function(){
       placement: "top",
    });
 
+   $("#asst_editprofile").popover({
+      trigger:"hover focus click",
+      content: "Change your profile",
+      placement: "auto",
+   });
+
+   $("#asst_editspace").popover({
+      trigger:"hover focus click",
+      content: "Edit your space",
+      placement: "auto",
+   });
    //setTimeout( function(){$("#asst_space_videocallinfo").popover("show")}, 500);
 
 });
@@ -35,13 +46,18 @@ $(function(){
 	<div class="row">
 		<div class="col-sm-2">
 			<img src="..." alt="..." style="width:100%; height: 200px" class="img-thumbnail"/>
+         {{ HTML::link("#", 'Edit my profile', array('class' => 'btn btn-info', 'style' => 'margin-top:20px', 'id' => 'asst_editprofile')) }}
+         {{ HTML::link("#", 'Edit my space', array('class' => 'btn btn-danger', 'style' => 'margin-top:10px', 'id' => 'asst_editspace')) }}
+
 		</div>
-		<div class="col-sm-10">
+		<div class="col-sm-8">
+				<h4>Your header shown here</h4>
 			<ul id="myTab" class="nav nav-tabs">
 			  <li class="active" ><a href="#blog" data-toggle="tab" id="asst_space_blog">Blog</a></li>
 			  <li><a href="#profile" data-toggle="tab" id="asst_space_profile">Profile</a></li>
 			  <li><a href="#showFriend" data-toggle="tab" id="asst_space_showfriend">ShowFriend</a></li>
 			  <li><a href="#showVideoCallInfo" data-toggle="tab" id="asst_space_videocallinfo">Video Call Info </a></li>
+			  <li><a href="#manageAds" data-toggle="tab" id="asst_space_manageAds">Manage Ads</a></li>
 			</ul>
 
 			<!-- Tab panes -->
@@ -93,13 +109,12 @@ $(function(){
 								</tr>
 							</tbody>
 						</table> 
-				  		{{ HTML::link("#", 'Edit', array('class' => 'btn btn-warning')) }}
 					</div>
 			  </div> <!-- for tab-pane profile -->
 
 				<?php echo View::make('virtualAsst.friends_showFriend'); ?>
 				<?php echo View::make('virtualAsst.webRTC_showVideoCallInfo'); ?>
-
+				<?php echo View::make('virtualAsst.ads_manageAds'); ?>
 
 			</div>
 		</div>

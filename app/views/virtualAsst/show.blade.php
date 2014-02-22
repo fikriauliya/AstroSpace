@@ -42,6 +42,18 @@ $(function(){
 		placement: "auto top",
 	});
 
+	$("#asst_message").popover({
+		trigger:"hover focus",
+		content: "To send or see message from / to other user",
+		placement: "auto top",
+	});
+
+	$("#asst_usersearch").popover({
+		trigger:"hover focus",
+		content: "To search other user base on username",
+		placement: "auto top",
+	});
+	
 	$("#asst_editthemes").popover({
 		trigger:"hover focus",
 		content: "Edit your personal themes",
@@ -116,14 +128,19 @@ $(function(){
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li>{{ HTML::link('#', 'Home', array('id'=>'asst_home')) }}</li>
-            <li>{{ HTML::link('#', 'Memberlist', array('id'=>'asst_memberlist')) }}</a></li>
-          </ul>
+          	<li>{{ HTML::link('#', 'Messages', array('id' => 'asst_message')) }}</li>
+            <li>{{ HTML::link('#', 'Memberlist', array('id'=>'asst_memberlist')) }}</li>
+				<li>{{ HTML::link('#', 'User search', array('id' => 'asst_usersearch')) }}</li>
+			 
+			 </ul>
 
           <ul class="nav navbar-nav navbar-right" style="">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" id='asst_settings' data-toggle="dropdown">Settings <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>{{ HTML::link('#', "Edit themes", array('id'=>'asst_editthemes')) }}</li>
+						<li>{{ HTML::link('#', 'Change password', array('id' => 'asst_changepassword')) }}</li>
+
                 </ul>
               </li>
               <li>{{ HTML::link('#', 'Log out',array('id'=>'asst_logout')) }}</li>
