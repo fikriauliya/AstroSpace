@@ -53,10 +53,14 @@ class SpacesController extends BaseController {
 	public function update($id) {
 		// TODO: except password & email
 		$user = User::find($id);
-		if (Auth::user()->id == $user->id) {
+		if (Auth::user()->id == $user->id || Auth::user()->role == 'admin') {
 			$user->header = Input::get('header');
 			$user->right_content = Input::get('right_content');
 	    $user->save();
+
+		 	if (Auth::user()->role == 'admin') {
+				return Redirect::to('admin')->with('message', 'Successfully update spaces of '.$user->username);
+			}
 
 			return Redirect::to('spaces/'.$id)->with('message', 'Space updated');
 		} else {
