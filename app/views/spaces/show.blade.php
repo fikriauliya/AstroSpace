@@ -59,36 +59,36 @@
 							<tbody>
 							  <tr>
 									<td>Username</td>
-									<td>{{ $user->username }}</td>
+									<td>{{{ $user->username }}}</td>
 								</tr>
 								<tr>
 									<td>Email</td>
-									<td>{{ $user->email }}</td>
+									<td>{{{ $user->email }}}</td>
 								</tr>
 								<tr>
 									<td>AIM</td>
-									<td>{{ $user->aim }}</td>
+									<td>{{{ $user->aim }}}</td>
 								</tr>
 								<tr>
 									<td>MSN</td>
-									<td>{{ $user->msn }}</td>
+									<td>{{{ $user->msn }}}</td>
 								</tr>
 								<tr>
 									<td>IRC</td>
-									<td>{{ $user->irc }}</td>
+									<td>{{{ $user->irc }}}</td>
 								</tr>
 								<tr>
 									<td>ICQ</td>
-									<td>{{ $user->icq }}</td>
+									<td>{{{ $user->icq }}}</td>
 								</tr>
 							</tbody>
 						</table> 
 					</div>
 			  </div> <!-- for tab-pane profile -->
 				@if (Auth::check() && Auth::user()->id == $user->id)
-				<?php echo $showFriend; ?>
-				<?php echo $showVideoCallInfo; ?>
-				<?php echo $manageAds ; ?>
+					<?php echo $showFriend; ?>
+					<?php echo $showVideoCallInfo; ?>
+					<?php echo $manageAds ; ?>
 				@endif		
 
 
