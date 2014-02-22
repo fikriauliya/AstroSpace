@@ -12,16 +12,17 @@
 			</tr>
 		</thead>
 		<tbody>
-		@foreach($user->comments() as $key => $value)
+		@foreach($user->comments as $key => $value)
 			<tr>
 				<td>{{{ $value->blog_post_id }}}</td>
 				<td>{{{ $value->content }}}</td>
 				<td>
-					{{ Form::open(array('url' => 'admin/deleteComment')) }}
+					{{ Form::open(array('url' => 'admin/delete-comment')) }}
 					{{ Form::hidden('comment_id', $value->id) }}
 					{{ Form::submit('Delete', array('class'=>'btn btn-danger') ) }}
 					{{ Form::close() }}
 				</td>
+			</tr>
 		@endforeach
 		</tbody>
 	</table>
