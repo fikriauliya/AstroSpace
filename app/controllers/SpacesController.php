@@ -1,8 +1,6 @@
 <?php
 
 class SpacesController extends BaseController {
-	
-	
 	public function show($id) {
 		$auth_user = Auth::user();
 		$user = User::find($id);

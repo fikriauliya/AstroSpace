@@ -11,7 +11,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-sm-2-offset-2 col-sm-10">
+				<div class="col-sm-offset-2 col-sm-10">
 				{{ Form::submit('Search', array('class'=>'btn btn-primary'))}}
 				</div>
 			</div>
