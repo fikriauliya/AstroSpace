@@ -35,6 +35,9 @@ Route::controller('ads','AdsController');
 //Admin
 Route::controller('admin','AdminController');
 
+//Statistic
+Route::controller('statistics', 'StatisticController');
+
 
 // Profiles
 Route::resource('profiles', 'ProfilesController', array('only' => array('show', 'edit', 'update')));

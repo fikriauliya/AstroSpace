@@ -57,7 +57,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>{{ HTML::link('themes/'.(Auth::user()->id).'/edit', "Edit themes") }}</li>
-                  <li>{{ HTML::link('users/changepassword', 'Change password') }}</li>
+                  <li>{{ HTML::link('statistics/show', 'Show web statistic') }} </li>
+						<li>{{ HTML::link('users/changepassword', 'Change password') }}</li>
                   @if (Auth::user()->role == 'admin')
       						  <li>{{ HTML::link('admin/', 'Admin area') }} </li>
       					  @endif
