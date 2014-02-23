@@ -30,7 +30,4 @@ class Comment extends Eloquent {
 		});
 
    }   
-
-
-
 }
