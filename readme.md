@@ -1,7 +1,5 @@
 ## AstroSpace
 
-MD5: ec904013024dac4f856f04fee149c73b astrospaces_a1_18_last.vdi
-
 The apps will have 8 normal user with username: userX where X is in range [0, 8].
 The email address and password for each user would be: userX@email.com/passw0rd
 
