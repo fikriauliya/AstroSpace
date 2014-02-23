@@ -12,7 +12,7 @@
   @else
     @foreach($notifications as $notification)
       <div class="row" style="margin-top:10px">
-        <div class="col-sm-6">
+        <div style="background-color: rgb(247, 247, 249); padding:20px; margin-bottom: 10px">
           {{HTML::link($notification->url, $notification->content)}}
           <div style="font-size:9px">{{date("D, d M H:i:s", strtotime($notification->created_at))}}</div>
         </div>
