@@ -25,7 +25,7 @@
 		<h3>Statistics 3: Visitor's country</h3>
 		<!-- Put the statistic here -->
 		<?php
-			echo
+			echo "VISITOR COUNTRY: ";
 		?>
 
 	</div><!-- stats_3 -->
@@ -34,7 +34,7 @@
 		<h3>Statistics 4: Number of visits</h3>
 		<!-- Put the statistic here -->
 		<?php
-			echo
+			echo "Number of visits: ";
 		?>
 	</div><!-- stats_4 -->
 
