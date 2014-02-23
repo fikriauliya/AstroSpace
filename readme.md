@@ -9,7 +9,7 @@ Team Members:
 
 - Yong Kuan Feng (A00897975E)
 - Pahlevi Fikri Auliya (A0096034H)
-- Yosua Michael Maranatha ()
+- Yosua Michael Maranatha (A0096028B)
 
 
 Notes on the feature implemented:
