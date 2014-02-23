@@ -29,4 +29,20 @@ class BlogPost extends Eloquent {
 		}
 		return true;
   }
+
+  public static function boot()
+  {
+    parent::boot();
+
+    static::created(function($blog_post){
+      $visible_tos = explode(',', $blog_post->visible_tos);
+      foreach ($visible_tos as $visible_to) {
+        $notification = new Notification;
+        $notification->user_id = $visible_to;
+        $notification->content = "You are tagged in blog post: ".$blog_post->title;
+        $notification->url = url("/blogposts/".$blog_post->id);
+        $notification->save();
+      }
+    });
+  }
 }

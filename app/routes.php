@@ -48,3 +48,4 @@ Route::resource('blogposts', 'BlogPostsController', array('only' => array('show'
 Route::resource('comments', 'CommentsController', array('only' => array('store')));
 
 Route::resource('messages', 'MessagesController', array('only' => array('show', 'create', 'store', 'index')));
+Route::resource('notifications', 'NotificationsController', array('only' => array('index')));
