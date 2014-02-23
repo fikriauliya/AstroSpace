@@ -2,9 +2,12 @@
 @section('content')
   <div class="row">
     <div class="col-sm-12">
-        <h3>{{{ $blogpost->title }}}</h3>
+        <h4>{{{ $blogpost->title }}}</h4>
         <p>{{{ $blogpost->content }}}</p>
         <small>Mood: {{{ $blogpost->mood }}}</small>
+        @if(Auth::check() && Auth::user()->id == $blogpost->posted_by_id)
+          <div>{{HTML::link('/blogposts/'.$blogpost->id.'/edit', "Edit", array('class'=>'btn btn-sm btn-warning', 'style'=>'margin-top:15px'))}}</div>
+        @endif
         <hr/>
     </div>
   </div>

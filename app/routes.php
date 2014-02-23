@@ -44,7 +44,7 @@ Route::resource('profiles', 'ProfilesController', array('only' => array('show', 
 Route::resource('spaces', 'SpacesController', array('only'=> array('show', 'edit', 'update')));
 
 Route::resource('themes', 'ThemesController', array('only' => array('edit', 'update')));
-Route::resource('blogposts', 'BlogPostsController', array('only' => array('show', 'create', 'store')));
+Route::resource('blogposts', 'BlogPostsController', array('only' => array('show', 'create', 'store', 'edit', 'update')));
 Route::resource('comments', 'CommentsController', array('only' => array('store')));
 
 Route::resource('messages', 'MessagesController', array('only' => array('show', 'create', 'store', 'index')));
