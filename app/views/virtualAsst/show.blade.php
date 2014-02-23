@@ -48,6 +48,12 @@ $(function(){
 		placement: "auto top",
 	});
 
+	$("#asst_notification").popover({
+		trigger:"hover focus",
+		content: "You will get notification if others tag you in their blog",
+		placement: "auto top",
+	});
+
 	$("#asst_usersearch").popover({
 		trigger:"hover focus",
 		content: "To search other user base on username",
@@ -143,7 +149,8 @@ $(function(){
           <ul class="nav navbar-nav">
             <li>{{ HTML::link('#', 'Home', array('id'=>'asst_home')) }}</li>
           	<li>{{ HTML::link('#', 'Messages', array('id' => 'asst_message')) }}</li>
-            <li>{{ HTML::link('#', 'Memberlist', array('id'=>'asst_memberlist')) }}</li>
+            <li>{{ HTML::link('#', 'Notifications', array('id' => 'asst_notification')) }}
+				<li>{{ HTML::link('#', 'Memberlist', array('id'=>'asst_memberlist')) }}</li>
 				<li>{{ HTML::link('#', 'User search', array('id' => 'asst_usersearch')) }}</li>
 			 
 			 </ul>
