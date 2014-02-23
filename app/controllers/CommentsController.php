@@ -23,11 +23,6 @@ class CommentsController extends BaseController {
       $comment->blog_post_id = Input::get('blog_post_id');
       $comment->save();
 
-		$blogpost = BlogPost::find( Input::get('blog_post_id') );
-		$blogpost->comment_count = $blogpost->comment_count + 1;
-		$blogpost->save();
-
-
       return Redirect::to('blogposts/'.$blog_post->id)->with('message', 'Your comment has been posted');
     } else {
       return Redirect::to('blogposts/'.$blog_post->id)->with('warning', 'The following errors occurred')->withErrors($validator)->withInput();
