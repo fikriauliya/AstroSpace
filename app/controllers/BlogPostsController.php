@@ -71,6 +71,7 @@ class BlogPostsController extends BaseController {
 				$blog_post->is_private = false;
 			}
 
+			$blog_post->visible_tos = '';
 			//TODO: check whether they are really friend
 			if (Input::get('visible_tos') != NULL) {
 				$blog_post->visible_tos = join(',', Input::get('visible_tos'));
