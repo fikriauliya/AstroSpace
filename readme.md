@@ -5,13 +5,6 @@ SHA1 of AstroSpaces_A1_18: 89721487d5486f469e7d1a769d0b382c295558eb
 The apps will have 8 normal user with username: userX where X is in range [0, 7].
 The email address and password for each user would be: userX@email.com/passw0rd
 
-Team Members:
-
-- Yong Kuan Feng (A00897975E)
-- Pahlevi Fikri Auliya (A0096034H)
-- Yosua Michael Maranatha ()
-
-
 Notes on the feature implemented:
 
 ###Advertisement
@@ -41,3 +34,4 @@ The email Server is from Gmail, make sure that user's email server doesn't autom
 If you can't receive the email, you may check Spam folder.
 - When the user change password, email notification is sent
 - When the user forget the password, the reset link can be sent user's email. 
+
