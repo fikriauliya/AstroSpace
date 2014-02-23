@@ -1,6 +1,6 @@
 ## AstroSpace
 
-SHA1 of AstroSpaces_A1_18: 89721487d5486f469e7d1a769d0b382c295558eb
+MD5: ec904013024dac4f856f04fee149c73b astrospaces_a1_18_last.vdi
 
 The apps will have 8 normal user with username: userX where X is in range [0, 8].
 The email address and password for each user would be: userX@email.com/passw0rd

@@ -1,8 +1,8 @@
 List of Features (template)
 
-GROUP - group18
+GROUP: group18
 Application : AstroSpaces
-VM MD5 checksum: [8c04545ecdefa8c054efd3e8ab209c42  Magento_A1-20.vdi]
+VM MD5 checksum: ec904013024dac4f856f04fee149c73b astrospaces_a1_18_last.vdi
 
 - Yong Kuan Feng (A00897975E)
 F6 User based web statistics (Advanced)
