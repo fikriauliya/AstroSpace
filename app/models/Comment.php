@@ -13,8 +13,6 @@ class Comment extends Eloquent {
   public function blogPost() {
     return $this->belongsTo('BlogPost', 'blog_post_id', 'id');
   }
-<<<<<<< HEAD
-=======
 
    public static function boot(){
       parent::boot();
@@ -32,8 +30,4 @@ class Comment extends Eloquent {
 		});
 
    }   
-
-
-
->>>>>>> 1984345c0317f82fe86590923d9279f774bd33cc
 }
