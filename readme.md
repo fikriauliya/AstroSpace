@@ -14,6 +14,13 @@ Team Members:
 
 Notes on the feature implemented:
 
+##SSL
+All traffic to the web application will be converted from HTTPS regardless whether the user did or did not specify the HTTPS header in the browser.
+
+###Web-Statistics
+When the user opens up the page that shows statistics, it will show the the number of comments of each post and the number of incoming emails.
+
+
 ###Advertisement
 Currently we allow ads from http and https connection (even though the web application is all on https).
 Hence, for the newer browser, the ads using http will be blocked because of mixed active content. 

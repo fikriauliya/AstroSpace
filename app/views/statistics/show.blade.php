@@ -24,13 +24,18 @@
 	<div class="container-fluid" id="stats_3">
 		<h3>Statistics 3: Visitor's country</h3>
 		<!-- Put the statistic here -->
+		<?php
+			echo
+		?>
 
 	</div><!-- stats_3 -->
 
 	<div class="container-fluid" id="stats_4">
 		<h3>Statistics 4: Number of visits</h3>
 		<!-- Put the statistic here -->
-
+		<?php
+			echo
+		?>
 	</div><!-- stats_4 -->
 
 
