@@ -4,7 +4,7 @@ class SpacesController extends BaseController {
 	public function show($id) {
 		$auth_user = Auth::user();
 		$user = User::find($id);
-		$blog_posts = $user->blogPosts;
+		$blog_posts = $user->blogPosts->sortBy('updated_at')->reverse();
 		$visible_blog_posts = array();
 		$is_authorized = Auth::check();
   	

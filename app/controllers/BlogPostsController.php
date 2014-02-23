@@ -13,7 +13,7 @@ class BlogPostsController extends BaseController {
 			return Redirect::to('/')->with('warning', 'This post is private');
 		}
 
-		$comments = $blog_post->comments;
+		$comments = $blog_post->comments->sortBy('created_at')->reverse();
 		return View::make('blogposts.show')->with('blogpost', $blog_post)->with('comments', $comments);
 	}
 
