@@ -30,4 +30,4 @@ user5@email.com => passw0rd
 user6@email.com => passw0rd
 user7@email.com => passw0rd
 user8@email.com => passw0rd
-student@student.com => student
+student@student.com => student (admin)
