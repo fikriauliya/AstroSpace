@@ -8,7 +8,7 @@
 		<?php
 		$blogposts = $user->blogposts;
 		foreach($blogposts as $blogpost){
-			echo "The number of comments of post '".$blogpost->title."', "." number of comments: ".$blogpost->comment_count;
+			echo "The number of comments of post '".htmlentities($blogpost->title)."', "." number of comments: ".$blogpost->comment_count;
 		}?>
 
 	</div><!-- stats_1 -->
