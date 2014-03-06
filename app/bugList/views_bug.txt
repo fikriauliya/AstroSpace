@@ -1,0 +1,32 @@
+BUGS (quite good):
+./views/spaces/show.blade.php:			<img src="{{$photo_path}}" alt="..." style="width:100%; height: 120px" class="img-thumbnail"/>  ---> DANGEROUS, can be attacked by injecting script to photo's name, example exploit: use photo with name: [test.a" "onerror=alert(1)"] --> good bug
+
+
+FIXED:
+./views/spaces/show.blade.php:			  				<h3>{{ HTML::link("blogposts/".$value->id, $value->title)}}</h3> --> FIXED
+./views/spaces/show.blade.php:			  				<p>{{ $value->content }}</p> --> FIXED
+./views/spaces/show.blade.php:			  				<p style="font-size:small">Mood: {{ $value->mood }}</p> --> FIXED
+
+
+MAYBE BUGS:
+class: username
+./views/users/index.blade.php:		  			<td>{{ HTML::link('spaces/' . $value->id, $value->username) }}</td>
+./views/users/search.blade.php:				{{ HTML::link('spaces/'.$value->id, $value->username) }}
+./views/admin/index.blade.php:				<td>{{ HTML::link('spaces/'.$value->id, $value->username) }}</td>
+./views/blogposts/edit.blade.php:              {{$friend['username']}}
+./views/blogposts/create.blade.php:              {{$friend->username}}
+./views/blogposts/show.blade.php:            {{ HTML::link('spaces/'.$comment->postedBy->id, $comment->postedBy->username) }}</small>
+./views/layouts/master.blade.php:              <li>{{ HTML::link('users/logout', 'Log out '.e(Auth::user()->username))}}</li>
+./views/friends/showFriend.blade.php:								<a href= "{{ URL::to('spaces/'.$friend->id) }}" > {{$friend->username }}  </a>
+./views/friends/showFriend.blade.php:							<a href=" {{ URL::to('spaces/'.$friend->id)}}"> {{ $friend->username }} </a>
+
+class: other
+./views/users/mails/welcome.blade.php:{{ HTML::link($verification_url, $verification_url) }}
+./views/ads/empty_ads.blade.php:      {{ HTML::style('css/bootstrap-'.Auth::user()->theme.'.min.css') }}  --> Auth::user()->theme might be edited by user (intercept the post and edit the value name)
+./views/layouts/master.blade.php:      {{ HTML::style('css/bootstrap-'.Auth::user()->theme.'.min.css', array('id'=>'theme_css')) }}
+./views/messages/create.blade.php:            {{ Form::select('recipient', $friends, '', array('class'=>'form-control')) }}
+./views/webRTC/showVideoCallInfo.blade.php:					<td> {{ HTML::link('spaces/'.$participant->id, $participant->username) }}  </td>
+./views/notifications/index.blade.php:          {{HTML::link($notification->url, $notification->content)}} --> notification->content may not be safe
+
+
+HAVENT CHECK:
