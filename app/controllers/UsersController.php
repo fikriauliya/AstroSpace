@@ -7,17 +7,19 @@ class UsersController extends BaseController {
 	}
 
 	public function getSearch() {
-		return View::make('users.search');
-	}
-
-	public function postSearch(){
 		$userinput = Input::get('search');
 		$searchresult = User::where('username', '=', $userinput)->get();
-		if(count($searchresult)>0) {
-		return View::make('users.search')->with('user_result',$searchresult);
+		if (count($searchresult)>0) {
+			return View::make('users.search')
+				->with('user_result',$searchresult)
+				->with('error', 0);
 		}
-		else
-			return View::make('users.search') -> with('warning', 'No such user found');
+		else if ($userinput != "") {
+			return View::make('users.search')->with('error', 1);
+		}
+		else {
+			return View::make('users.search')->with('error', 0);
+		}
 	}
 
 	public function getRegister() {

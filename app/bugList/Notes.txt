@@ -1,0 +1,5 @@
+We still need to change the following:
+1) Add image capability on the blogpost
+2) Change the email authentication method to use own SMTP server --> Easy bug: make guessable authentication for forgot password!
+3) Decrease the button on upper left for master layouts (it block the pane when the browser is not wide enough)
+
