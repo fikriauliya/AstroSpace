@@ -9,6 +9,7 @@ Password: passw0rd
 3) Enter:
 Title: any
 Url: http://kompas.com
+or http://localhost/
 Budget: 10
 Description: test
 
@@ -16,7 +17,8 @@ Description: test
 None
 
 * Set up a malicious web application as a bait (if applicable)
-We don't need to prepare this as the intention is to open a vulnerability for another attack such as Man In the Middle
+We don't need to prepare this as the intention is to open a vulnerability for another attack such as Man In the Middle.
+When the ads is set to http://localhost/, the Man in Middle Attack can get the cookie in a plain form!
 
 * State any secrets you keep in your web application (if applicable)
 None
