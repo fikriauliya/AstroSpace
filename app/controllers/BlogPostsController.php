@@ -2,7 +2,7 @@
 
 class BlogPostsController extends BaseController {
 	public function __construct() {
-    $this->beforeFilter('csrf', array('on'=>'post'));
+    $this->beforeFilter('csrf', array('on'=> array('put', 'post')));
     $this->beforeFilter('auth', array('only'=>array('create', 'store')));
 	}
 

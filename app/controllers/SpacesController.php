@@ -1,6 +1,11 @@
 <?php
 
 class SpacesController extends BaseController {
+	public function __construct() {
+    $this->beforeFilter('csrf', array('on'=> array('put', 'post')));
+    $this->beforeFilter('auth', array('only'=>array('edit', 'update')));
+	}
+
 	public function show($id) {
 		$auth_user = Auth::user();
 		$user = User::find($id);
