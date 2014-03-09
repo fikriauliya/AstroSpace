@@ -1,0 +1,23 @@
+========== Class of Vulnerability: mixed content (23) ==========
+* Goal: inject http content into https content
+* Exploit verification: the attacker ables to embed http page he wish into the https page in the server. In this case, the attacker HTTP content will be displayed in the ads iframe.
+* Exploit steps: 
+1) Go to https://localhost/users/login.
+Email: user0@email.com
+Password: passw0rd
+2) Go to https://localhost/ads/create
+3) Enter:
+Title: any
+Url: http://kompas.com
+Budget: 10
+Description: test
+
+* Specify how to run attack automation tool (if applicable):
+None
+
+* Set up a malicious web application as a bait (if applicable)
+We don't need to prepare this as the intention is to open a vulnerability for another attack such as Man In the Middle
+
+* State any secrets you keep in your web application (if applicable)
+None
+
