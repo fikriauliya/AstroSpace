@@ -11,19 +11,42 @@ class AdminController extends BaseController{
 
 	public function getEditInfo(){
 		$user = User::find( Input::get('user_id') );
-		return View::make('profiles.edit')->with('user',	$user);	
+		if (count($user) > 0) {
+			return View::make('profiles.edit')->with('user',	$user);	
+		}
+		else {
+			$user_id = Input::get('user_id');
+			$user_id = $this->htmlentity($user_id);
+			$warning = "User id: ".$user_id."\tnonexistent. <!--NoUser:".$user_id."-->";
+			Session::flash('warning', $warning);
+			return View::make('admin.error');
+		}
 	}
 
 	public function getEditSpace(){
 		$user = User::find( Input::get('user_id') );
-		return View::make('spaces.edit')->with('user', $user);
-
+		if (count($user) > 0) {
+			return View::make('spaces.edit')->with('user', $user);
+		}
+		else {
+			$user_id = Input::get('user_id');
+			$warning = "User id: ".$user_id." nonexistent";
+			return View::make('admin.error')->with('warning', $warning);
+		}
 	}
 
 	public function getDeleteComment(){
 		$user = User::find( Input::get('user_id') );
-		return View::make('admin.deleteComment')->with('user', $user);
+		if (count($user) > 0) {
+			return View::make('admin.deleteComment')->with('user', $user);
+		}
+		else {
+			$user_id = Input::get('user_id');
+			$warning = "User id ".$user_id." nonexistent!";
+			return View::make('admin.error')->with('warning', $warning);
+		}
 	}
+
 
 	public function postDeleteComment(){
 		//Get input
@@ -53,5 +76,11 @@ class AdminController extends BaseController{
 			->with('message','Successfully delete user: '.$username);
 	}
 
-
+	private function htmlentity($input){
+		$temp = strtolower($input);
+		$result = str_replace("<script>", "",$temp);
+		$result = strip_tags($result, "<script>");
+		return $result;
+	}
+	
 }
