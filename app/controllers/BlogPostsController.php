@@ -85,7 +85,20 @@ class BlogPostsController extends BaseController {
 
 	public function create() {
 		$friends = Auth::user()->friends2;
-		return View::make('blogposts.create')->with('friends', $friends);
+		$blog_post = new BlogPost;
+		$blog_post->title = Input::get('title');
+		$blog_post->content = Input::get('content');
+		$blog_post->mood = Input::get('mood');
+		if (Input::get('privacy') == NULL) {
+			$privacy = 'private';
+		} else {
+			$privacy = 'public';
+		}
+
+		return View::make('blogposts.create')
+			->with('friends', $friends)
+			->with('blogpost', $blog_post)
+			->with('privacy', $privacy);
 	}
 
 	public function store() {
