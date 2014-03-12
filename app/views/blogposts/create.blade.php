@@ -16,7 +16,7 @@
 @section('content')
   <div class="row">
     <h3>New blog post</h3>
-    {{ Form::open(array('url'=>'blogposts', 'class'=>'form-horizontal', 'role'=>'form')) }}
+    {{ Form::model($blogpost, array('url'=>'blogposts', 'class'=>'form-horizontal', 'role'=>'form')) }}
       <div class="col-sm-9">
         <ul style="color:red">
           @foreach($errors->all() as $error)
@@ -54,7 +54,7 @@
         </div>
         <div class="form-group">
           <label for="privacy">Visibility</label>
-          {{ Form::select('privacy', array('private' => 'Private', 'public' => 'Public'), '', array('id'=>'privacy', 'class'=>'form-control')) }}
+          {{ Form::select('privacy', array('private' => 'Private', 'public' => 'Public'), $privacy, array('id'=>'privacy', 'class'=>'form-control')) }}
         </div>
         <div class="form-group" id="visible_for_group">
           <label for="visible_to">Visible to</label>

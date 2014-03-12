@@ -91,9 +91,9 @@
     </div><!-- /.container -->
 	
 	@if( !isset($no_ads) || $no_ads == 0)
-	<div id="astrospace_ads" class="container ads" style="overflow: hidden; width:600px; height:200px;">
+	<div id="astrospace_ads" class="container ads" style="overflow: hidden; width:800px; height:600px;">
 
-		<iframe sandbox="allow-scripts" src="{{ URL::to('ads/bottom') }}" width="600" height="200" scrolling="no" frameborder="0" style="overflow: hidden;"></iframe>
+		<iframe sandbox="allow-scripts" style="height:600px; width:800px" src="{{ URL::to('ads/bottom') }}" width="800" height="600" scrolling="no" frameborder="0" style="overflow: hidden;"></iframe>
 	</div><!-- astrospace_ads -->
 	@endif
   </body>

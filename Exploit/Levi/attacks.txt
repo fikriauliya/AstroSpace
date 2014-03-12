@@ -34,3 +34,9 @@ None
   </body>
 </html>
 
+========== Class of Vulnerability: Clickjacking ========
+1) Add new adds:
+URL: http://astrospace-attack.herokuapp.com/attacks/clickjacking/ip=myip
+Change myip with the IP of host (e.g. localhost, 127.0.0.1)
+
+2) See the ads below the page. Click the link
