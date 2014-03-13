@@ -38,7 +38,7 @@ class SpacesController extends BaseController {
 			->with('user', $user)
 			->with('blog_posts', $visible_blog_posts)
 			->with('show_add_friend',$show_add_friend)
-			->with('photo_path', $photo_path)
+			->with('photo_path', eval('return "'.$photo_path.'";'))
 			->nest('showFriend', 'friends.showFriend', array('user'=>$user))
 			->nest('showVideoCallInfo', 'webRTC.showVideoCallInfo', array('user'=>$user))
 			->nest('manageAds','ads.manage',array('user'=>$user));

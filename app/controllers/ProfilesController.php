@@ -39,7 +39,7 @@ class ProfilesController extends BaseController {
 	    		$file = Input::file('photo');
 	    		$destination_path = public_path().'/photos/';
 	    		$file_name = $user->id.'.'.$file->getClientOriginalExtension();
-
+	    			    		
 	    		$allowed_mimes = array('image/png', 'image/gif', 'image/jpeg', 'image/pjpeg', 'image/svg+xml');
 	    		if ($file->getSize() < 1000000 && in_array($file->getMimeType(), $allowed_mimes)) {
 	    			Input::file('photo')->move($destination_path, $file_name);
