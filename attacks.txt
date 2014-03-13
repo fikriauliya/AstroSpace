@@ -40,3 +40,8 @@ URL: http://astrospace-attack.herokuapp.com/attacks/clickjacking/ip=myip
 Change myip with the IP of host (e.g. localhost, 127.0.0.1)
 
 2) See the ads below the page. Click the link
+
+
+========== Class of Vulnerability: Remote code execution ========
+1) Upload file named 1.png$_SERVER[SERVER_ADDR] to photo
+2) Go to home page, the remote IP address is printed in the HTML
