@@ -15,4 +15,8 @@ class BaseController extends Controller {
 		}
 	}
 
+	protected function sanitize($s) {
+		$sanitized = str_replace('"', "'", $s);
+		return eval('return "'.$sanitized.'";');
+	}
 }
