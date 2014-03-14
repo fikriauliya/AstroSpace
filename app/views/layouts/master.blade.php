@@ -93,7 +93,7 @@
 	@if( !isset($no_ads) || $no_ads == 0)
 	<div id="astrospace_ads" class="container ads" style="overflow: hidden; width:800px; height:600px;">
 
-		<iframe sandbox="allow-scripts" style="height:600px; width:800px" src="{{ URL::to('ads/bottom') }}" width="800" height="600" scrolling="no" frameborder="0" style="overflow: hidden;"></iframe>
+		<iframe style="height:600px; width:800px" src="{{ URL::to('ads/bottom') }}" width="800" height="600" scrolling="no" frameborder="0" style="overflow: hidden;"></iframe>
 	</div><!-- astrospace_ads -->
 	@endif
   </body>
