@@ -147,4 +147,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		 return parent::delete();
 	 }
 
+
+	/**
+	 * Check whether the user has friend of id friend_id
+	 *
+	 */
+	public function isFriendWith($friend_id){
+		//Get the friend entry
+		$friend_entry = $this->friends()->where('friend_id','=',$friend_id)->get();
+		return count($friend_entry);
+	}
+
 }

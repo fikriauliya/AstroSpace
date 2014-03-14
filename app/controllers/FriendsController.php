@@ -35,21 +35,21 @@ class FriendsController extends BaseController {
 			$friend_id = Input::get('friend_id');
 			
 			//Check if id exist
-			if (!User::find($friend_id)->exists()){
+			if (count(User::find($friend_id)->get())==0  ){
 				Session::flash('warning', 'Cannot befriend, user is not exist!');
-				Redirect::to($current_url);
+				return Redirect::to($current_url);
 			}
 
 			//Check if already friend
-			if ($user->friends()->where('friend_id','=',$friend_id)->exists()){
+			if (count($user->friends()->where('friend_id','=',$friend_id)->get())>0 ){
 				Session::flash('message', 'Already become friend');
-				Redirect::to($current_url);
+				return Redirect::to($current_url);
 			}
 
 			//Check if already request friend
-			if (User::find($friend_id)->friendRequests()->where('friend_id','=',$user_id)->exists()){
+			if (count( User::find($friend_id)->friendRequests()->where('friend_id','=',$user_id)->get())>0  ){
 				Session::flash('message', 'Already send request');
-				Redirect::to($current_url);
+				return Redirect::to($current_url);
 			}
 
 
@@ -83,9 +83,9 @@ class FriendsController extends BaseController {
 			$friend_id = Input::get('friend_id');
 			
 			//Check if friend request really exist
-			if (!User::find($user_id)->friendRequests()->where('friend_id','=',$friend_id)->exists()){
+			if (count(Auth::user()->friendRequests()->where('friend_id','=',$friend_id)->get())==0  ){
 				Session::flash('warning','Friend request not exist');
-				Redirect::to($current_url);
+				return Redirect::to($current_url);
 			}
 
 
@@ -132,9 +132,9 @@ class FriendsController extends BaseController {
 			$friend_id = Input::get('friend_id');
 
 			//Check if really are friend
-			if (!$user->friends()->where('friend_id','=',$friend_id)->exists()){
+			if (count($user->friends()->where('friend_id','=',$friend_id)->get())==0 ){
 				Session::flash('warning', 'Cannot remove non friend');
-				Redirect::to($current_url);
+				return Redirect::to($current_url);
 			}
 
 			//get the friend row

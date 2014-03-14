@@ -70,9 +70,16 @@ class WebRTCController extends BaseController {
 		$room_id = $user->videoRoom->room_id;
 		$friend = User::find($friend_id);
 
+		//check whether the user really are friend with the one invited
+		if (!$user->isFriendWith($friend_id)){
+			//Session::flash('warning', 'The user is not a friend!');
+			return "Not a friend!";
+		}
+
+		//check whether the user is already invited or not
 		if ($friend->videoCallRequests()->where('room_id','=',$room_id)->exists() || ($friend->videoRoom()->exists() && $friend->videoRoom->room_id == $room_id) ){
-			Session::flash('warning', 'The user is already invited!');
-			return "User already invited!";
+			//Session::flash('warning', 'The user is already invited!');
+			return "Already invited!";
 		}	
 
 		//add to table

@@ -26,8 +26,19 @@
 					'friend_id': user_id,
 					'_token': '{{ csrf_token() }}',
 				},
-				success: function() {
-					$(el).replaceWith("<p>Is invited<p>");
+				success: function(data) {
+					console.log(data);
+					if (data == "SUCCESS") {
+						$(el).replaceWith("<p>Is invited<p>");
+					}
+					else {
+						var warning = "<p class='alert alert-danger' id='warningP'>" + data + "</p>";
+						$("#warningDiv").html(warning);
+						if (data == "Already invited!") {
+							$(el).replaceWith("<p>Is invited<p>");
+						}
+					}
+
 				},
 				error: function(e) {
 					console.log("ERROR: ", e);

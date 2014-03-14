@@ -48,7 +48,7 @@ Route::filter('auth.basic', function()
 
 Route::filter('admin', function() {
 	if (Auth::guest()) return Redirect::guest('users/login')->with('message', 'You must login as admin');
-	else if (Auth::user()->role != 'admin') return Redirect::to('spaces/'.Auth::user()->id)->with('message','You do not have admin right!');
+	else if (Auth::user()->role != 'admin') return Redirect::to('spaces/'.Auth::user()->id)->with('warning','You do not have admin right!');
 
 });
 Route::when('admin/*','admin');

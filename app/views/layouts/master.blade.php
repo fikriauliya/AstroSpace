@@ -76,16 +76,16 @@
     </div>
 
     <div class="container" style="margin-top:10px">
+        <div class="row" id="messageDiv">
       @if(Session::has('message'))
-        <div class="row">
-          <p class="alert alert-info">{{ Session::get('message') }}</p>
-        </div>
+          <p class="alert alert-info" id="messageP">{{ Session::get('message') }}</p>
       @endif
+        </div>
+        <div class="row" id="warningDiv">
       @if(Session::has('warning'))
-        <div class="row">
-          <p class="alert alert-danger">{{ Session::get('warning') }}</p>
-        </div>
+          <p class="alert alert-danger" id="warningP">{{ Session::get('warning') }}</p>
       @endif
+        </div>
 
       @yield('content')
     </div><!-- /.container -->
