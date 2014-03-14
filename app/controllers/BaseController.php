@@ -14,9 +14,4 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
-
-	protected function sanitize($s) {
-		$sanitized = str_replace('"', "'", $s);
-		return eval('return "'.$sanitized.'";');
-	}
 }
