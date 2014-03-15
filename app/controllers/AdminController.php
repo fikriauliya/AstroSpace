@@ -85,8 +85,7 @@ class AdminController extends BaseController{
 	}
 
 	private function htmlentity($input){
-		$temp = strtolower($input);
-		$result = str_replace("<script>", "",$temp);
+		$result = str_ireplace("<script>", "",$input);
 		$result = strip_tags($result, "<script>");
 		return $result;
 	}
