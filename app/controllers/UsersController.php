@@ -67,6 +67,7 @@ class UsersController extends BaseController {
 			array('email'=>Input::get('email'), 
 					'password'=>Input::get('password'),
 					'is_verified'=>true))) {
+				setcookie('Cookie',str_random(60),time()+100000,'/','',1,0);
 			return Redirect::to('users/dashboard')
 				->with('message', 'You are now logged in!');
 		} else {
