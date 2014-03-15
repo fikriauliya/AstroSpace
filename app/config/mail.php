@@ -28,8 +28,8 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.gmail.com',
-	//'host' => 'student-laptop',
+	//'host' => 'smtp.gmail.com',
+	'host' => 'email.com',
 	/*
 	|--------------------------------------------------------------------------
 	| SMTP Host Port
@@ -54,8 +54,8 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => "astrospace.nus@gmail.com", 'name' => "Astrospace NUS"),
-	//'from' => array('address' => "astrospace@student-laptop", 'name' => "Astrospace NUS"),
+	//'from' => array('address' => "astrospace.nus@gmail.com", 'name' => "Astrospace NUS"),
+	'from' => array('address' => "astrospace@email.com", 'name' => "Astrospace NUS"),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -68,8 +68,8 @@ return array(
 	|
 	*/
 
-	'encryption' => 'tls',
-	//'encryption' => '',
+	//'encryption' => 'tls',
+	'encryption' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -82,8 +82,8 @@ return array(
 	|
 	*/
 
-	'username' => "astrospace.nus",
-	//'username' => "astrospace",
+	//'username' => "astrospace.nus",
+	'username' => "astrospace",
 
 	/*
 	|--------------------------------------------------------------------------
@@ -96,8 +96,8 @@ return array(
 	|
 	*/
 
-	'password' => "passw0rd!",
-	//'password' => "passw0rd",
+	//'password' => "passw0rd!",
+	'password' => "passw0rd",
 
 	/*
 	|--------------------------------------------------------------------------
@@ -110,8 +110,8 @@ return array(
 	|
 	*/
 
-	'sendmail' => '/usr/sbin/sendmail -bs',
-	//'sendmail' => '/usr/local/citadel/citmail -bs',
+	//'sendmail' => '/usr/sbin/sendmail -bs',
+	'sendmail' => '/usr/local/citadel/citmail -bs',
 
 	/*
 	|--------------------------------------------------------------------------

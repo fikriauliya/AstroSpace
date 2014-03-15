@@ -4,14 +4,24 @@
 sudo apt-get install zlib1g-dev
 sudo apt-get install gettext
 
+#Change hostname to email.com before installing
+sudo vim /etc/hostname
+#Change the content to: email.com
+sudo reboot
+
 #Use easy install to install
 sudo su
 curl http://easyinstall.citadel.org/install | sh
+
+#Create a domain for email.com
+sudo vim /etc/hosts
+#add 127.0.1.1 email.com
 
 #Create a username astrospace in the local citadel
 #  username: astrospace
 #  password: passw0rd
 
+#You can access the email UI from browser: http://localhost:2000
 
 #Change the current ./app/config/mail.php 
 # Switch from current implementation (gmail) to new implementation which is commented (use citadel) 
