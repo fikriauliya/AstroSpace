@@ -65,9 +65,6 @@ class AdminController extends BaseController{
 	}
 
 	public function postDeleteUser(){
-		if (! (count($comment) && Auth::user()->role == 'admin') ){
-			return Redirect::to('/')->with('warning', 'You do not have admin right!');
-		}
 		//Get current url
 		$current_url = Session::get('current_url');
 		Session::forget('current_url');
