@@ -3,6 +3,8 @@
 class AdminController extends BaseController{
 	public function __construct(){
 		$this->beforeFilter('csrf',array('on'=>'post'));
+		$this->beforeFilter('admin',array('only'=>array('getIndex','getEditInfo','getEditSpace', 'getDeleteComment', 'postDeleteUser') ) );
+		$this->beforeFilter('auth',array('on'=>array('post','get')));
 	}
 	
 	public function getIndex(){
@@ -53,7 +55,7 @@ class AdminController extends BaseController{
 		$comment_id = Input::get('comment_id');
 		$comment = Comment::find( $comment_id );
 
-		if (count($comment) && Auth::user()->role == 'admin'){
+		if (count($comment) ){
 			$comment->delete();
 		}
 		else {

@@ -22,7 +22,7 @@ class FriendsController extends BaseController {
 		Session::forget('current_url');
 
 		$rules = array(
-			'friend_id' => 'required|numeric'
+			'friend_id' => 'required'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -33,6 +33,7 @@ class FriendsController extends BaseController {
 		else {
 			//Get the input
 			$friend_id = Input::get('friend_id');
+			
 			
 			//Check if id exist
 			if (count(User::find($friend_id)->get())==0  ){
@@ -53,11 +54,11 @@ class FriendsController extends BaseController {
 			}
 
 
-			$friend_request = new FriendRequest;
-			$friend_request->friend_id = $user_id;
-			$friend_request->owner_id = $friend_id;
-			$friend_request->save();
-
+				$friend_request = new FriendRequest;
+				$friend_request->friend_id = $user_id;
+				$friend_request->owner_id = $friend_id;
+				$friend_request->save();
+			
 			//refresh
 			Session::flash('message', 'Successfully add friend!');
 			return Redirect::to($current_url);
