@@ -51,7 +51,7 @@ Route::filter('admin', function() {
 	else if (Auth::user()->role != 'admin') return Redirect::to('spaces/'.Auth::user()->id)->with('warning','You do not have admin right!');
 
 });
-Route::when('admin/*','admin');
+//Route::when('admin/*','admin');
 Route::when('admin','admin');
 
 /*
