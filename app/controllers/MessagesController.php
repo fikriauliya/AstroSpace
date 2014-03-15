@@ -18,7 +18,6 @@ class MessagesController extends BaseController {
 	public function store() {
 		$user = Auth::user();
 		
-		// TODO: check whether they are really friend
 		$new_message = new Message;
 		$new_message->sender_id = $user->id;
 		$new_message->recipient_id = Input::get('recipient');
