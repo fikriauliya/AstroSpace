@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -107,7 +107,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Thujohn\Analytics\AnalyticsServiceProvider',
-	),
+    'Mews\Purifier\PurifierServiceProvider',
+ 	),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -172,7 +173,8 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
-		'Analytics'			=> 'Thujohn\Analytics\AnalyticsFacade',
+		'Analytics'		  	=> 'Thujohn\Analytics\AnalyticsFacade',
+		'Purifier'        => 'Mews\Purifier\Facades\Purifier'
 	),
 
 );
