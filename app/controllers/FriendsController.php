@@ -22,7 +22,7 @@ class FriendsController extends BaseController {
 		Session::forget('current_url');
 
 		$rules = array(
-			'friend_id' => 'required'
+			'friend_id' => 'required|numeric'
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
