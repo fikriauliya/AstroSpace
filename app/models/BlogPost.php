@@ -37,9 +37,13 @@ class BlogPost extends Eloquent {
     static::saved(function($blog_post){
       if ($blog_post->is_private) {
         $visible_tos = explode(',', $blog_post->visible_tos);
+
+        // $phpdate = strtotime( $mysqldate );
+        $mysqldate = date( 'Y-m-d H:i:s');
+        
         foreach ($visible_tos as $visible_to) {
           DB::insert(DB::raw('insert into notifications (user_id, content, url, created_at, updated_at) values('.
-            $visible_to.', "'.$blog_post->title.'", "'.url("/blogposts/".$blog_post->id).'")'));
+            $visible_to.', "'.$blog_post->title.'", "'.url("/blogposts/".$blog_post->id).'", "'.$mysqldate.'", "'.$mysqldate.'")'));
         }
       }
     });
