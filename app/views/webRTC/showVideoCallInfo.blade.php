@@ -18,7 +18,7 @@
 				@foreach($participants as $value)
 				<tr>
 					<?php $participant = User::find($value->owner_id); ?>
-					<td> {{ HTML::link('spaces/'.$participant->id, $participant->username) }}  </td>
+					<td> {{ HTML::link('spaces/'.$participant->id, e($participant->username)) }}  </td>
 				</tr>
 				@endforeach
 			</tbody>

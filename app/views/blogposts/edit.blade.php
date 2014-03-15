@@ -63,7 +63,7 @@
           @foreach($friends as $friend)
             <div>
               <input type="checkbox" name="visible_tos[]" value="{{$friend['id']}}" {{$friend['is_checked']}}/>
-              {{$friend['username']}}
+              {{{$friend['username']}}}
             </div>
           @endforeach
         </div>

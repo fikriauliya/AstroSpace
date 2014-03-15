@@ -20,7 +20,7 @@
 	  	<tbody>
 	  		@foreach($users as $key => $value)
 		  		<tr>
-		  			<td>{{ HTML::link('spaces/' . $value->id, $value->username) }}</td>
+		  			<td>{{ HTML::link('spaces/' . $value->id, e($value->username)) }}</td>
 		  			<td>{{{$value->email}}}</td>
 		  			<td>{{{$value->aim}}}</td>
 						<td>{{{$value->msn}}}</td>

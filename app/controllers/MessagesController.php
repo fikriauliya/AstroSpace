@@ -10,7 +10,7 @@ class MessagesController extends BaseController {
 		$friends = Auth::user()->friends2;
 		$friends_arr = array();
 		foreach ($friends as $friend) {
-			$friends_arr[$friend->id] = $friend->username;
+			$friends_arr[$friend->id] = e($friend->username);
 		}
 		return View::make('messages.create')->with('friends', $friends_arr);
 	}

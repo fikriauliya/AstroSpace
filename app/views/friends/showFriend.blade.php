@@ -8,7 +8,7 @@
 					@foreach($user->friends2 as $key => $friend)
 					<tr>
 						<td>
-							<a href=" {{ URL::to('spaces/'.$friend->id)}}"> {{ $friend->username }} </a>
+							<a href=" {{ URL::to('spaces/'.$friend->id)}}"> {{{ $friend->username }}} </a>
 						</td>
 						<td>
 
