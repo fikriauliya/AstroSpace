@@ -72,10 +72,24 @@ class BlogPostsController extends BaseController {
 			}
 
 			$blog_post->visible_tos = '';
-			//TODO: check whether they are really friend
+			
+			$friends = Auth::user()->friends2;
+			$friend_ids = array();
+			foreach ($friends as $friend) {
+				array_push($friend_ids, $friend->id);
+			} 
+
 			if (Input::get('visible_tos') != NULL) {
-				$blog_post->visible_tos = join(',', Input::get('visible_tos'));
+				$visible_tos = array();
+				foreach (Input::get('visible_tos') as $visible_to) {
+					if (in_array($visible_to, $friend_ids)) {
+						array_push($visible_tos, $visible_to);
+					}
+				}
+				$blog_post->visible_tos = join(',', $visible_tos);
+				Log::info("Visible tos: ".$blog_post->visible_tos);
 			}
+
 			$blog_post->save();
 			return Redirect::to('blogposts/'.$id)->with('message', 'Post updated'); 
     } else {
@@ -118,8 +132,6 @@ class BlogPostsController extends BaseController {
 				$blog_post->is_private = false;
 			}
 
-			//TODO: check whether they are really friend
-			
 			$friends = Auth::user()->friends2;
 			$friend_ids = array();
 			foreach ($friends as $friend) {
