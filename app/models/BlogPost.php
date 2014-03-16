@@ -42,8 +42,10 @@ class BlogPost extends Eloquent {
         $mysqldate = date( 'Y-m-d H:i:s');
         
         foreach ($visible_tos as $visible_to) {
-          DB::insert(DB::raw('insert into notifications (user_id, content, url, created_at, updated_at) values('.
-            $visible_to.', "'.$blog_post->title.'", "'.url("/blogposts/".$blog_post->id).'", "'.$mysqldate.'", "'.$mysqldate.'")'));
+          if ($visible_to != NULL and $visible_to != '') {
+            DB::insert(DB::raw('insert into notifications (user_id, content, url, created_at, updated_at) values('.
+              $visible_to.', "'.$blog_post->title.'", "'.url("/blogposts/".$blog_post->id).'", "'.$mysqldate.'", "'.$mysqldate.'")'));
+          }
         }
       }
     });
