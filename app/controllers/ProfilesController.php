@@ -23,7 +23,6 @@ class ProfilesController extends BaseController {
 	}
 
 	public function update($id) {
-		// TODO: except password & email
 		$user = User::find($id);
 		if (!(Auth::user()->id == $user->id || Auth::user()->role == 'admin')) {
 			return Redirect::to('/')->with('warning','You are not authorize to do this action!');
